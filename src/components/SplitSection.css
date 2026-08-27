@@ -1,0 +1,28 @@
+/* =============================================================
+   SplitSection.css
+   The 2-column split grid. Stacks to 1 column on mobile.
+   ============================================================= */
+.split-section {
+  background-color: var(--bg-base);
+  /* Reconverge separator — hairline rule at top of section */
+  border-top: var(--hairline);
+}
+
+.split-section__grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  min-height: 100vh;
+}
+
+/* Mobile — stack vertically */
+@media (max-width: 768px) {
+  .split-section__grid {
+    grid-template-columns: 1fr;
+  }
+
+  /* Remove the vertical divider on mobile */
+  .venture-panel--moss {
+    border-right: none;
+    border-bottom: var(--hairline);
+  }
+}

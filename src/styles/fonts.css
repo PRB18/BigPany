@@ -1,0 +1,8 @@
+/* =============================================================
+   FONTS — Bigpany
+   Fraunces (variable display), Inter (body/UI), JetBrains Mono (labels)
+   font-display: swap on all faces for performance.
+   ============================================================= */
+
+/* Google Fonts import — preconnects handled in index.html */
+@import url('https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,100..900;1,9..144,100..900&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap');

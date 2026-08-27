@@ -1,0 +1,169 @@
+/* =============================================================
+   VenturePanel.css
+   Shared styles for OmniGrowthPanel and HaiybellbottomPanel.
+   ============================================================= */
+
+.venture-panel {
+  position: relative;
+  min-height: 90vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  padding: var(--space-12) var(--section-pad-x) var(--space-12);
+  overflow: hidden;
+  /* Transition driven by Framer Motion via inline style — no CSS animation needed */
+}
+
+/* Background SVG motif — large, decorative, positioned top-right */
+.venture-panel__motif {
+  position: absolute;
+  top: -5%;
+  right: -5%;
+  width: 75%;
+  height: 75%;
+  pointer-events: none;
+  opacity: 1;
+}
+
+.venture-motif {
+  width: 100%;
+  height: 100%;
+}
+
+/* Content area */
+.venture-panel__content {
+  position: relative;
+  z-index: 2;
+  max-width: 520px;
+}
+
+.venture-panel__eyebrow {
+  margin-bottom: var(--space-3);
+  color: var(--grey);
+  letter-spacing: 0.14em;
+}
+
+.venture-panel__headline {
+  font-family: var(--font-display);
+  font-size: clamp(2.5rem, 5vw, 5rem);
+  font-weight: 700;
+  line-height: 0.92;
+  letter-spacing: -0.03em;
+  color: var(--moss-tint);
+  margin-bottom: var(--space-4);
+  font-optical-sizing: auto;
+}
+
+.venture-panel__headline--vermillion {
+  color: var(--vermillion-tint);
+}
+
+.venture-panel__body {
+  font-family: var(--font-body);
+  font-size: var(--text-body);
+  line-height: 1.7;
+  color: var(--paper);
+  opacity: 0.8;
+  max-width: 42ch;
+  margin-bottom: var(--space-4);
+}
+
+/* Meta info rows */
+.venture-panel__meta {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-1);
+  margin-bottom: var(--space-6);
+  padding-top: var(--space-3);
+  border-top: var(--hairline);
+}
+
+.venture-panel__meta-line {
+  color: var(--grey);
+  font-size: var(--text-mono);
+  letter-spacing: 0.08em;
+}
+
+/* Primary CTA button */
+.venture-panel__cta {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  font-family: var(--font-body);
+  font-size: var(--text-small);
+  font-weight: 500;
+  letter-spacing: 0.02em;
+  padding: 0.75rem 1.5rem;
+  border: 1px solid currentColor;
+  border-radius: 2px;
+  transition: transform 0.18s var(--ease-out-expo),
+              opacity 0.18s var(--ease-out-expo),
+              background-color 0.18s var(--ease-out-expo);
+  margin-bottom: var(--space-3);
+}
+
+.venture-panel__cta--moss {
+  color: var(--moss-tint);
+}
+.venture-panel__cta--moss:hover,
+.venture-panel__cta--moss:focus-visible {
+  background-color: rgba(63, 95, 60, 0.2);
+  transform: translateY(-2px);
+}
+
+.venture-panel__cta--vermillion {
+  color: var(--vermillion-tint);
+}
+.venture-panel__cta--vermillion:hover,
+.venture-panel__cta--vermillion:focus-visible {
+  background-color: rgba(201, 67, 45, 0.15);
+  transform: translateY(-2px);
+}
+
+.cta-arrow {
+  display: inline-block;
+  transition: transform 0.18s var(--ease-out-expo);
+}
+.venture-panel__cta:hover .cta-arrow,
+.venture-panel__cta:focus-visible .cta-arrow {
+  transform: translateX(4px);
+}
+
+/* Secondary link (e.g. GitHub) */
+.venture-panel__link-secondary {
+  display: block;
+  font-size: var(--text-mono);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--grey);
+  transition: color 0.15s var(--ease-out-expo),
+              transform 0.15s var(--ease-out-expo);
+}
+.venture-panel__link-secondary:hover,
+.venture-panel__link-secondary:focus-visible {
+  color: var(--moss-tint);
+  transform: translateX(2px);
+}
+
+/* Coming soon label */
+.venture-panel__coming-soon {
+  color: var(--grey);
+  opacity: 0.5;
+  font-size: var(--text-mono);
+  letter-spacing: 0.12em;
+  margin-top: var(--space-1);
+}
+
+/* Vertical hairline divider between panels (desktop) */
+.venture-panel--moss {
+  border-right: var(--hairline);
+}
+
+/* Focus ring override for CTAs inside panels */
+.venture-panel__cta:focus-visible {
+  outline: 2px solid var(--moss-tint);
+  outline-offset: 3px;
+}
+.venture-panel__cta--vermillion:focus-visible {
+  outline-color: var(--vermillion-tint);
+}

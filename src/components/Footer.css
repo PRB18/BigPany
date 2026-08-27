@@ -1,0 +1,103 @@
+/* =============================================================
+   Footer.css
+   ============================================================= */
+.footer {
+  background-color: var(--bg-base);
+  border-top: var(--hairline);
+  padding: var(--space-12) 0 var(--space-8);
+}
+
+.footer__inner {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-8);
+}
+
+.footer__top {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: var(--space-8);
+}
+
+.footer__brand {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+}
+
+.footer__wordmark {
+  font-family: var(--font-display);
+  font-size: 1.25rem;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+  color: var(--paper);
+  opacity: 0.9;
+  transition: opacity 0.15s var(--ease-out-expo);
+}
+
+.footer__wordmark:hover {
+  opacity: 0.6;
+}
+
+.footer__tagline {
+  font-family: var(--font-body);
+  font-size: var(--text-small);
+  color: var(--grey);
+  max-width: 28ch;
+}
+
+/* Footer nav */
+.footer__nav-list {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: var(--space-2);
+}
+
+.footer__nav-link {
+  color: var(--grey);
+  font-size: var(--text-mono);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  transition: color 0.15s var(--ease-out-expo),
+              transform 0.15s var(--ease-out-expo);
+}
+
+.footer__nav-link:hover,
+.footer__nav-link:focus-visible {
+  color: var(--paper);
+  transform: translateX(-2px);
+}
+
+.footer__divider {
+  width: 100%;
+  height: 1px;
+  background: rgba(138, 133, 120, 0.2);
+}
+
+.footer__bottom {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.footer__copyright {
+  font-size: var(--text-mono);
+  letter-spacing: 0.08em;
+  color: var(--grey);
+  opacity: 0.5;
+}
+
+@media (max-width: 600px) {
+  .footer__top {
+    flex-direction: column;
+    gap: var(--space-6);
+  }
+  .footer__nav-list {
+    align-items: flex-start;
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: var(--space-3);
+  }
+}
