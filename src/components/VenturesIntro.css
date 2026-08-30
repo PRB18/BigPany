@@ -1,29 +1,67 @@
 /* =============================================================
-   VenturesIntro.css
+   VenturesIntro.css — Stitch exact match
    ============================================================= */
 .ventures-intro {
-  padding: var(--space-16) 0 var(--space-12);
   background-color: var(--bg-base);
+  padding: var(--space-16) 0;
+  border-bottom: var(--hairline);
 }
 
 .ventures-intro__inner {
   display: flex;
   flex-direction: column;
   align-items: center;
+  text-align: center;
   gap: var(--space-4);
 }
 
-.ventures-intro__text {
-  font-size: var(--text-xs);
-  letter-spacing: 0.22em;
+/* Primary peach eyebrow */
+.ventures-intro__eyebrow {
+  font-family: var(--font-mono);
+  font-size: var(--text-mono);
+  letter-spacing: 0.2em;
   text-transform: uppercase;
-  color: var(--grey);
-  text-align: center;
+  color: var(--primary);
 }
 
+/* Syne uppercase headline */
+.ventures-intro__headline {
+  font-family: var(--font-syne);
+  font-size: clamp(1.5rem, 3vw, 3rem);
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  text-transform: uppercase;
+  color: var(--paper);
+  line-height: 1.1;
+}
+
+/* Line + dot wrapper */
+.ventures-intro__divider-wrap {
+  position: relative;
+  width: 100%;
+  max-width: 48rem;
+  margin-top: var(--space-6);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Animated hairline */
 .ventures-intro__divider {
-  width: 1px;
-  height: 4rem;
-  background: rgba(138, 133, 120, 0.3);
-  transform-origin: top;
+  width: 100%;
+  height: 1px;
+  background: rgba(255, 180, 166, 0.5);  /* primary at 50% */
+  transform-origin: left;
+}
+
+/* Centered dot */
+.ventures-intro__dot {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 0.5rem;
+  height: 0.5rem;
+  background: var(--primary);
+  border-radius: 0;  /* Stitch uses square dots */
 }

@@ -1,74 +1,157 @@
 /* =============================================================
-   VenturePanel.css
-   Shared styles for OmniGrowthPanel and HaiybellbottomPanel.
+   VenturePanel.css — Stitch exact match
+   Full-bleed, full-width panels stacked vertically.
    ============================================================= */
 
+/* Base panel — full bleed, full height */
 .venture-panel {
   position: relative;
-  min-height: 90vh;
+  min-height: 100vh;
+  width: 100%;
   display: flex;
   flex-direction: column;
   justify-content: flex-end;
-  padding: var(--space-12) var(--section-pad-x) var(--space-12);
+  padding: var(--space-12) var(--section-pad-x);
   overflow: hidden;
-  /* Transition driven by Framer Motion via inline style — no CSS animation needed */
+  border-bottom: var(--hairline);
 }
 
-/* Background SVG motif — large, decorative, positioned top-right */
-.venture-panel__motif {
+/* Background image layer — covers panel, allows parallax */
+.venture-panel__bg {
   position: absolute;
-  top: -5%;
-  right: -5%;
-  width: 75%;
-  height: 75%;
+  inset: -15% 0;  /* overshoot for parallax room */
+  background-size: cover;
+  background-position: center;
+  z-index: 0;
+  will-change: transform;
+}
+
+/* OmniGrowth — crops/agriculture bg */
+.venture-panel--omnigrowth .venture-panel__bg {
+  background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuCtwDKKDqdhhS_lIDSZl3TgPp4ibYG3kESEMapcUvb2x4guQ6L2hfN1CzLaulx7wNehW9KeGDNnNRUchWjI4VxOA7u5lQ6eg2qLHpR0ofiVSj4Q8927RvnYS5YXY30mfb6uLpFIGLPL7pw9BMBBgKWxefLvItqouctYFtP5iMxJ10yRLTVZTl3P6121_E1zDNXrdxGuqPCERfQCdswbZx_1LjM5NFWdolsWuNA3ABENjRsX0VBoc2PN8A');
+}
+
+/* Haiybellbottom — red sculptural figure bg */
+.venture-panel--haiybellbottom .venture-panel__bg {
+  background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuDrXFWPPJXzPbsW9rJlMZjHev3l5CRvictZc0em-XEV-XezHa6THAAWN3lIW4-bXV9yDjbZ1C9aFlh8_8MeLQHf8ABpKI7LDmeCU_psgTROgxHUShFSNRTANoCUKHkcXjc08-FPwSHa_u-tzlHBrLDDP_VrZ7yCzJH8lBne7SKk9bU72pxaT0JjQirHdXehlPHCTBEKbqHn7KSI_4tL4MWG_R7-kdENBPXe8NpzxJIZQ76qtnRw_UY_4A');
+}
+
+/* Gradient overlay — dark from bottom to transparent */
+.venture-panel__gradient {
+  position: absolute;
+  inset: 0;
   pointer-events: none;
-  opacity: 1;
+  z-index: 1;
 }
 
-.venture-motif {
-  width: 100%;
-  height: 100%;
+.venture-panel__gradient--moss {
+  background: linear-gradient(
+    to top,
+    rgba(17, 26, 16, 0.92) 0%,
+    rgba(17, 26, 16, 0.45) 45%,
+    transparent 100%
+  );
 }
 
-/* Content area */
+.venture-panel__gradient--vermillion {
+  background: linear-gradient(
+    to top,
+    rgba(30, 11, 8, 0.92) 0%,
+    rgba(30, 11, 8, 0.45) 45%,
+    transparent 100%
+  );
+}
+
+/* Content area — default: bottom left */
 .venture-panel__content {
   position: relative;
   z-index: 2;
-  max-width: 520px;
+  max-width: 640px;
 }
 
-.venture-panel__eyebrow {
-  margin-bottom: var(--space-3);
-  color: var(--grey);
+/* Right-aligned variant (Haiybellbottom) */
+.venture-panel__content--right {
+  align-self: flex-end;
+  text-align: right;
+}
+
+/* Badge — mono, bordered pill */
+.venture-panel__badge {
+  display: inline-block;
+  font-family: var(--font-mono);
+  font-size: var(--text-mono);
   letter-spacing: 0.14em;
+  text-transform: uppercase;
+  padding: 0.3rem 0.75rem;
+  border: 1px solid currentColor;
+  border-radius: 0;
+  margin-bottom: var(--space-4);
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
 }
 
+.venture-panel__badge--moss {
+  color: var(--moss-tint);
+  background: rgba(17, 26, 16, 0.65);
+}
+
+.venture-panel__badge--vermillion {
+  color: var(--primary);
+  background: rgba(30, 11, 8, 0.65);
+}
+
+/* Headline — large Fraunces uppercase */
 .venture-panel__headline {
   font-family: var(--font-display);
-  font-size: clamp(2.5rem, 5vw, 5rem);
+  font-size: clamp(3rem, 8vw, 8rem);
   font-weight: 700;
-  line-height: 0.92;
-  letter-spacing: -0.03em;
-  color: var(--moss-tint);
+  line-height: 0.9;
+  letter-spacing: -0.02em;
+  text-transform: uppercase;
+  color: var(--paper);
   margin-bottom: var(--space-4);
   font-optical-sizing: auto;
 }
 
 .venture-panel__headline--vermillion {
-  color: var(--vermillion-tint);
+  /* keep paper color — Stitch keeps the name white */
+  color: var(--paper);
 }
 
+/* Body copy */
 .venture-panel__body {
-  font-family: var(--font-body);
-  font-size: var(--text-body);
-  line-height: 1.7;
-  color: var(--paper);
-  opacity: 0.8;
-  max-width: 42ch;
+  font-family: var(--font-mono);
+  font-size: var(--text-small);
+  line-height: 1.65;
+  color: rgba(225, 226, 224, 0.8);
+  max-width: 44ch;
   margin-bottom: var(--space-4);
 }
 
-/* Meta info rows */
+/* Left border accent (OmniGrowth) */
+.venture-panel__body--moss-accent {
+  border-left: 2px solid var(--moss-tint);
+  padding-left: var(--space-3);
+  padding-top: 0.4rem;
+  padding-bottom: 0.4rem;
+  background: rgba(17, 26, 16, 0.35);
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+}
+
+/* Right border accent (Haiybellbottom) */
+.venture-panel__body--vermillion-accent {
+  border-right: 2px solid var(--primary);
+  padding-right: var(--space-3);
+  padding-top: 0.4rem;
+  padding-bottom: 0.4rem;
+  background: rgba(30, 11, 8, 0.35);
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+  text-align: right;
+}
+
+/* Meta rows */
 .venture-panel__meta {
   display: flex;
   flex-direction: column;
@@ -79,44 +162,56 @@
 }
 
 .venture-panel__meta-line {
-  color: var(--grey);
+  font-family: var(--font-mono);
   font-size: var(--text-mono);
   letter-spacing: 0.08em;
+  color: var(--grey);
 }
 
-/* Primary CTA button */
+/* CTA button — shared base */
 .venture-panel__cta {
   display: inline-flex;
   align-items: center;
-  gap: var(--space-2);
-  font-family: var(--font-body);
-  font-size: var(--text-small);
+  justify-content: space-between;
+  gap: var(--space-6);
+  font-family: var(--font-mono);
+  font-size: var(--text-mono);
   font-weight: 500;
-  letter-spacing: 0.02em;
-  padding: 0.75rem 1.5rem;
-  border: 1px solid currentColor;
-  border-radius: 2px;
-  transition: transform 0.18s var(--ease-out-expo),
-              opacity 0.18s var(--ease-out-expo),
-              background-color 0.18s var(--ease-out-expo);
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  padding: 1.1rem 1.5rem;
+  border-radius: 0;
+  transition: background 0.2s var(--ease-out-expo),
+              color 0.2s var(--ease-out-expo),
+              transform 0.18s var(--ease-out-expo);
   margin-bottom: var(--space-3);
+  min-width: 220px;
 }
 
+/* Moss outline CTA (OmniGrowth — "LEARN MORE") */
 .venture-panel__cta--moss {
+  border: 1px solid var(--moss-tint);
   color: var(--moss-tint);
+  background: rgba(17, 26, 16, 0.35);
+  backdrop-filter: blur(4px);
 }
 .venture-panel__cta--moss:hover,
 .venture-panel__cta--moss:focus-visible {
-  background-color: rgba(63, 95, 60, 0.2);
+  background: var(--moss-tint);
+  color: var(--moss-dark);
   transform: translateY(-2px);
 }
 
-.venture-panel__cta--vermillion {
-  color: var(--vermillion-tint);
+/* Primary solid CTA (Haiybellbottom — "VIEW COLLECTION") */
+.venture-panel__cta--primary {
+  border: 1px solid var(--primary);
+  color: var(--on-primary);
+  background: var(--primary);
 }
-.venture-panel__cta--vermillion:hover,
-.venture-panel__cta--vermillion:focus-visible {
-  background-color: rgba(201, 67, 45, 0.15);
+.venture-panel__cta--primary:hover,
+.venture-panel__cta--primary:focus-visible {
+  background: transparent;
+  color: var(--primary);
   transform: translateY(-2px);
 }
 
@@ -129,41 +224,13 @@
   transform: translateX(4px);
 }
 
-/* Secondary link (e.g. GitHub) */
-.venture-panel__link-secondary {
-  display: block;
-  font-size: var(--text-mono);
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-  color: var(--grey);
-  transition: color 0.15s var(--ease-out-expo),
-              transform 0.15s var(--ease-out-expo);
-}
-.venture-panel__link-secondary:hover,
-.venture-panel__link-secondary:focus-visible {
-  color: var(--moss-tint);
-  transform: translateX(2px);
-}
-
 /* Coming soon label */
 .venture-panel__coming-soon {
-  color: var(--grey);
-  opacity: 0.5;
+  font-family: var(--font-mono);
   font-size: var(--text-mono);
   letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--grey);
+  opacity: 0.55;
   margin-top: var(--space-1);
-}
-
-/* Vertical hairline divider between panels (desktop) */
-.venture-panel--moss {
-  border-right: var(--hairline);
-}
-
-/* Focus ring override for CTAs inside panels */
-.venture-panel__cta:focus-visible {
-  outline: 2px solid var(--moss-tint);
-  outline-offset: 3px;
-}
-.venture-panel__cta--vermillion:focus-visible {
-  outline-color: var(--vermillion-tint);
 }

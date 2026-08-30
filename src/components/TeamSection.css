@@ -1,6 +1,5 @@
 /* =============================================================
-   TeamSection.css
-   Editorial masthead layout — colophon / credits page style.
+   TeamSection.css — Stitch exact match
    ============================================================= */
 .team-section {
   background-color: var(--bg-base);
@@ -11,87 +10,107 @@
 .team-section__inner {
   display: flex;
   flex-direction: column;
+  gap: var(--space-12);
 }
 
-.team-section__eyebrow {
-  color: var(--grey);
-  margin-bottom: var(--space-4);
-}
-
-.team-section__headline {
-  font-family: var(--font-display);
-  font-size: clamp(2.25rem, 5vw, 4.5rem);
-  font-weight: 500;
-  line-height: 1;
-  letter-spacing: -0.025em;
-  color: var(--paper);
-  margin-bottom: var(--space-12);
-  font-optical-sizing: auto;
-  font-style: italic;
-}
-
-/* Masthead list */
-.team-section__list {
+/* Header */
+.team-section__header {
   display: flex;
   flex-direction: column;
-  width: 100%;
-}
-
-.team-section__row {
-  display: grid;
-  grid-template-columns: 4rem 1fr auto;
-  align-items: baseline;
   gap: var(--space-4);
-  padding: var(--space-4) 0;
-  border-bottom: var(--hairline);
-  transition: opacity 0.15s var(--ease-out-expo);
 }
 
-.team-section__row:first-child {
+/* "The Architects." — Syne, large */
+.team-section__headline {
+  font-family: var(--font-syne);
+  font-size: clamp(2rem, 5vw, 4rem);
+  font-weight: 700;
+  line-height: 1;
+  letter-spacing: -0.02em;
+  color: var(--paper);
+}
+
+/* Animated underline */
+.team-section__rule {
+  width: min(24rem, 50%);
+  height: 1px;
+  background: rgba(138, 133, 120, 0.3);
+  transform-origin: left;
+}
+
+/* 3-column grid with hairline borders */
+.team-section__grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
   border-top: var(--hairline);
+  border-left: var(--hairline);
 }
 
-.team-section__row:hover {
-  opacity: 0.75;
+/* Card */
+.team-section__card {
+  display: flex;
+  flex-direction: column;
+  padding: var(--space-8) var(--space-6);
+  border-right: var(--hairline);
+  border-bottom: var(--hairline);
+  transition: background-color 0.25s var(--ease-out-expo);
+  cursor: default;
 }
 
-.team-section__index {
-  color: var(--grey);
-  opacity: 0.5;
+.team-section__card:hover {
+  background-color: rgba(138, 133, 120, 0.06);
+}
+
+/* "01 // FOUNDER" label */
+.team-section__card-index {
+  font-family: var(--font-mono);
   font-size: var(--text-mono);
-  letter-spacing: 0.1em;
-  flex-shrink: 0;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--grey);
+  display: block;
+  margin-bottom: var(--space-8);
 }
 
-.team-section__name {
+/* Large uppercase Fraunces name */
+.team-section__card-name {
   font-family: var(--font-display);
-  font-size: clamp(1.5rem, 3vw, 2.25rem);
+  font-size: clamp(2rem, 3.5vw, 2.75rem);
   font-weight: 400;
+  line-height: 1;
   letter-spacing: -0.01em;
   color: var(--paper);
   font-optical-sizing: auto;
+  margin-bottom: var(--space-8);
+  transition: color 0.2s var(--ease-out-expo);
 }
 
-.team-section__role {
-  color: var(--grey);
+.team-section__card:hover .team-section__card-name {
+  color: var(--primary);
+}
+
+/* Description */
+.team-section__card-desc {
+  font-family: var(--font-mono);
   font-size: var(--text-mono);
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-  text-align: right;
+  line-height: 1.7;
+  color: rgba(225, 226, 224, 0.55);
+  border-top: var(--hairline);
+  padding-top: var(--space-4);
+  margin-top: auto;
+  letter-spacing: 0.02em;
 }
 
-@media (max-width: 600px) {
-  .team-section__row {
-    grid-template-columns: 2.5rem 1fr;
-    grid-template-rows: auto auto;
+/* Mobile — single col */
+@media (max-width: 640px) {
+  .team-section__grid {
+    grid-template-columns: 1fr;
   }
-  .team-section__role {
-    grid-column: 2;
-    text-align: left;
-    margin-top: var(--space-1);
-    font-size: 0.6rem;
-  }
-  .team-section__name {
-    font-size: 1.5rem;
+}
+
+/* Tablet — 2 col */
+@media (min-width: 641px) and (max-width: 900px) {
+  .team-section__grid {
+    grid-template-columns: 1fr 1fr;
   }
 }

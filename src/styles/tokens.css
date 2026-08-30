@@ -1,31 +1,35 @@
 /* =============================================================
    BIGPANY DESIGN TOKENS
-   All values derived from the spec — do not deviate.
+   Updated to match Stitch design exactly.
    ============================================================= */
 
 :root {
   /* ── Color Palette ─────────────────────────────────────── */
-  --bg-base:            #0E0E0D;
-  --paper:              #F5F2EA;
+  --bg-base:            #131312;  /* Stitch surface-dim */
+  --paper:              #e5e2e0;  /* Stitch on-surface */
+  --primary:            #ffb4a6;  /* Stitch peach CTA */
+  --on-primary:         #660800;  /* Dark text on primary */
   --moss:               #3F5F3C;
   --moss-tint:          #7A9A6E;
-  --moss-dark:          #111A10;  /* very dark desaturated moss — split bg */
+  --moss-dark:          #111A10;
   --vermillion:         #C9432D;
   --vermillion-tint:    #E1785F;
-  --vermillion-dark:    #1E0B08;  /* very dark desaturated vermillion — split bg */
+  --vermillion-dark:    #1E0B08;
   --grey:               #8A8578;
+  --surface-container:  #20201e;  /* Card hover bg */
 
   /* ── Typography ────────────────────────────────────────── */
   --font-display: 'Fraunces', Georgia, serif;
-  --font-body:    'Inter', system-ui, -apple-system, sans-serif;
+  --font-syne:    'Syne', system-ui, sans-serif;
+  --font-body:    'JetBrains Mono', 'Courier New', monospace;  /* Stitch: mono body */
   --font-mono:    'JetBrains Mono', 'Courier New', monospace;
 
   /* ── Type Scale ─────────────────────────────────────────── */
-  --text-hero:     clamp(3.5rem, 11vw, 9rem);
+  --text-hero:     clamp(3.5rem, 10vw, 9rem);
   --text-hero-sub: clamp(1.25rem, 3.5vw, 3rem);
   --text-h2:       clamp(2rem, 5vw, 4.5rem);
   --text-h3:       clamp(1.5rem, 3vw, 2.5rem);
-  --text-body:     clamp(1rem, 1.2vw, 1.125rem);
+  --text-body:     clamp(0.9rem, 1.1vw, 1.125rem);
   --text-small:    0.875rem;
   --text-xs:       0.75rem;
   --text-mono:     0.6875rem;
@@ -51,7 +55,7 @@
 
   /* ── Layout ──────────────────────────────────────────────── */
   --max-width: 1440px;
-  --nav-height: 4rem;
-  --section-pad-x: clamp(1.5rem, 6vw, 7rem);
+  --nav-height: 4.5rem;
+  --section-pad-x: clamp(1.25rem, 4vw, 4rem);
   --section-pad-y: clamp(5rem, 10vw, 10rem);
 }

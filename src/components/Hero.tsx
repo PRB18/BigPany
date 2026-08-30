@@ -1,107 +1,67 @@
 /* =============================================================
-   Hero.tsx
-   Full-viewport-height entrance section.
-   Choreographed headline reveal on page load via Framer Motion.
+   Hero.tsx — Stitch exact match
+   Full-viewport hero with architectural bg image, centered
+   Fraunces italic+bold headline, bottom-right scroll indicator.
    ============================================================= */
-import { useEffect, useState } from 'react'
-import { motion, AnimatePresence } from 'framer-motion'
+import { motion } from 'framer-motion'
 import { useReducedMotion } from '../hooks/useReducedMotion'
 import './Hero.css'
 
-const containerVariants = {
-  hidden: {},
-  visible: {
-    transition: {
-      staggerChildren: 0.06,
-      delayChildren: 0.3,
-    },
-  },
-}
-
 const lineVariants = {
-  hidden: { opacity: 0, y: 32 },
+  hidden: { opacity: 0, y: 40 },
   visible: {
     opacity: 1,
     y: 0,
-    transition: { duration: 0.85, ease: [0.16, 1, 0.3, 1] },
+    transition: { duration: 0.9, ease: [0.16, 1, 0.3, 1] },
   },
 }
-
 const reducedLineVariants = {
   hidden: { opacity: 0 },
-  visible: {
-    opacity: 1,
-    transition: { duration: 0.4 },
-  },
+  visible: { opacity: 1, transition: { duration: 0.4 } },
 }
 
 export default function Hero() {
   const prefersReduced = useReducedMotion()
+  const lv = prefersReduced ? reducedLineVariants : lineVariants
 
   return (
-    <section className="hero noise-overlay" aria-label="Bigpany — hero">
+    <header className="hero" aria-label="Bigpany — hero">
       {/* Sentinel — used by Nav to detect hero exit */}
       <div id="hero-sentinel" className="hero__sentinel" aria-hidden="true" />
 
+      {/* Darkening overlay */}
+      <div className="hero__overlay" aria-hidden="true" />
+
+      {/* Centered headline */}
       <div className="hero__content">
-        {/* Mono eyebrow — PLACEHOLDER: confirm founding year */}
-        <motion.p
-          className="hero__eyebrow label-mono"
-          variants={prefersReduced ? reducedLineVariants : lineVariants}
+        <motion.h1
+          className="hero__headline"
+          variants={lv}
           initial="hidden"
           animate="visible"
-          transition={prefersReduced ? { duration: 0.4, delay: 0.1 } : { duration: 0.7, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
+          transition={prefersReduced
+            ? { duration: 0.4, delay: 0.2 }
+            : { duration: 0.9, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
         >
-          {/* TODO: confirm est. year — currently 2025 */}
-          Holding Company — Est. 2025
-        </motion.p>
-
-        {/* Main headline group */}
-        <motion.div
-          className="hero__headline-group"
-          variants={containerVariants}
-          initial="hidden"
-          animate="visible"
-        >
-          <motion.h1
-            className="hero__headline-main"
-            variants={prefersReduced ? reducedLineVariants : lineVariants}
-          >
-            Bigpany
-          </motion.h1>
-          <motion.p
-            className="hero__headline-sub"
-            variants={prefersReduced ? reducedLineVariants : lineVariants}
-          >
-            Retail Private Limited
-          </motion.p>
-        </motion.div>
-
-        {/* Tagline */}
-        <motion.p
-          className="hero__tagline"
-          variants={prefersReduced ? reducedLineVariants : lineVariants}
-          initial="hidden"
-          animate="visible"
-          transition={prefersReduced ? { duration: 0.4, delay: 0.5 } : { duration: 0.75, delay: 0.55, ease: [0.16, 1, 0.3, 1] }}
-        >
-          Built on loyalty, driven by vision.
-        </motion.p>
+          <span className="hero__line-normal">Built on</span>
+          <br />
+          <span className="hero__line-italic">loyalty. Driven</span>
+          <br />
+          <span className="hero__line-italic">by vision</span>
+        </motion.h1>
       </div>
 
-      {/* Scroll cue */}
+      {/* Scroll cue — bottom right (Stitch position) */}
       <motion.div
         className="hero__scroll-cue"
         aria-hidden="true"
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
-        transition={{ duration: 0.8, delay: 1.6 }}
+        transition={{ duration: 0.8, delay: 1.4 }}
       >
-        <span className="hero__scroll-label label-mono">Scroll</span>
+        <span className="hero__scroll-label">SCROLL</span>
         <div className="hero__scroll-line" />
       </motion.div>
-
-      {/* future: hero background video/photo once available — swap out noise-overlay + bg-base */}
-    </section>
+    </header>
   )
 }

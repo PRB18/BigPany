@@ -1,27 +1,26 @@
 /* =============================================================
    Nav.tsx — Fixed navigation bar
-   - Transparent over hero, gains backdrop-blur after hero exit
-   - Single backdrop-filter usage budget on the entire page
+   Stitch exact match: BIGPANY wordmark (Syne, uppercase),
+   VENTURES / STRATEGY / TEAM / CONTACT links,
+   solid primary ENQUIRE button.
    ============================================================= */
-import { useEffect, useRef, useState } from 'react'
+import { useEffect, useState } from 'react'
 import { motion } from 'framer-motion'
 import './Nav.css'
 
 const links = [
-  { label: 'OmniGrowth', href: '#omnigrowth' },
-  { label: 'Haiybellbottom', href: '#haiybellbottom' },
-  { label: 'Team', href: '#team' },
+  { label: 'Ventures', href: '#omnigrowth' },
+  { label: 'Strategy', href: '#ventures-intro' },
+  { label: 'Team',     href: '#team' },
+  { label: 'Contact',  href: '#team' },
 ]
 
 export default function Nav() {
   const [scrolled, setScrolled] = useState(false)
-  const sentinelRef = useRef<HTMLDivElement>(null)
 
   useEffect(() => {
-    // Track when the hero sentinel exits the viewport
     const sentinel = document.getElementById('hero-sentinel')
     if (!sentinel) return
-
     const observer = new IntersectionObserver(
       ([entry]) => setScrolled(!entry.isIntersecting),
       { threshold: 0 }
@@ -33,9 +32,7 @@ export default function Nav() {
   const handleNavClick = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
     e.preventDefault()
     const target = document.querySelector(href)
-    if (target) {
-      target.scrollIntoView({ behavior: 'smooth' })
-    }
+    if (target) target.scrollIntoView({ behavior: 'smooth' })
   }
 
   return (
@@ -45,25 +42,37 @@ export default function Nav() {
       aria-label="Main navigation"
       initial={{ opacity: 0, y: -8 }}
       animate={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.6, delay: 1.2, ease: [0.16, 1, 0.3, 1] }}
+      transition={{ duration: 0.6, delay: 0.3, ease: [0.16, 1, 0.3, 1] }}
     >
       <div className="nav__inner">
+        {/* Wordmark — Syne, uppercase, matching Stitch */}
         <a href="#" className="nav__wordmark" aria-label="Bigpany — back to top">
-          Bigpany
+          BIGPANY
         </a>
+
         <ul className="nav__links" role="list">
           {links.map(({ label, href }) => (
-            <li key={href}>
+            <li key={label}>
               <a
                 href={href}
                 className="nav__link"
                 onClick={(e) => handleNavClick(e, href)}
               >
-                {label}
+                {label.toUpperCase()}
               </a>
             </li>
           ))}
         </ul>
+
+        {/* ENQUIRE — solid primary fill (Stitch style) */}
+        <a
+          href="#team"
+          className="nav__cta"
+          onClick={(e) => handleNavClick(e, '#team')}
+          aria-label="Get in touch — scroll to team"
+        >
+          ENQUIRE
+        </a>
       </div>
     </motion.nav>
   )

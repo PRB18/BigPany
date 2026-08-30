@@ -1,12 +1,12 @@
 /* =============================================================
-   HaiybellbottomPanel.tsx
-   Right panel of The Split — Haiybellbottom fashion venture.
-   Scroll-linked background shift: --bg-base → --vermillion-dark
+   HaiybellbottomPanel.tsx — Stitch exact match
+   Full-bleed, full-width, bg image of red sculptural figure.
+   Content bottom-RIGHT: badge, large headline, "You can't buy it",
+   solid primary "VIEW COLLECTION" CTA.
    ============================================================= */
 import { useRef } from 'react'
 import { motion, useScroll, useTransform } from 'framer-motion'
 import { useReducedMotion } from '../hooks/useReducedMotion'
-import HaiybellbottomMotif from '../assets/HaiybellbottomMotif'
 import './VenturePanel.css'
 
 const CONTENT_VARIANTS = {
@@ -14,7 +14,7 @@ const CONTENT_VARIANTS = {
   visible: {
     opacity: 1,
     y: 0,
-    transition: { duration: 0.65, ease: [0.16, 1, 0.3, 1] },
+    transition: { duration: 0.7, ease: [0.16, 1, 0.3, 1] },
   },
 }
 const REDUCED_VARIANTS = {
@@ -26,78 +26,66 @@ export default function HaiybellbottomPanel() {
   const panelRef = useRef<HTMLDivElement>(null)
   const prefersReduced = useReducedMotion()
 
-  /* Scroll-linked color shift */
   const { scrollYProgress } = useScroll({
     target: panelRef,
-    offset: ['start end', 'center center'],
+    offset: ['start end', 'end start'],
   })
-
-  const backgroundColor = useTransform(
-    scrollYProgress,
-    [0, 1],
-    ['#0E0E0D', '#1E0B08']
-  )
+  const bgY = useTransform(scrollYProgress, [0, 1], ['0%', '15%'])
 
   return (
-    <motion.div
+    <section
       ref={panelRef}
       id="haiybellbottom"
-      className="venture-panel venture-panel--vermillion"
-      style={prefersReduced ? { backgroundColor: '#1E0B08' } : { backgroundColor }}
+      className="venture-panel venture-panel--haiybellbottom"
       aria-label="Haiybellbottom — clothing venture"
     >
-      {/* Background SVG motif */}
-      <div className="venture-panel__motif" aria-hidden="true">
-        <HaiybellbottomMotif />
-      </div>
-
-      {/* Content */}
+      {/* Background image with subtle parallax */}
       <motion.div
-        className="venture-panel__content"
+        className="venture-panel__bg"
+        style={prefersReduced ? undefined : { y: bgY }}
+        aria-hidden="true"
+      />
+
+      {/* Gradient overlay — bottom to transparent */}
+      <div className="venture-panel__gradient venture-panel__gradient--vermillion" aria-hidden="true" />
+
+      {/* Content — bottom RIGHT (Stitch) */}
+      <motion.div
+        className="venture-panel__content venture-panel__content--right"
         variants={prefersReduced ? REDUCED_VARIANTS : CONTENT_VARIANTS}
         initial="hidden"
         whileInView="visible"
-        viewport={{ once: true, margin: '-12%' }}
+        viewport={{ once: true, margin: '-10%' }}
       >
-        <p className="venture-panel__eyebrow label-mono">02 — Clothing</p>
+        {/* Badge */}
+        <span className="venture-panel__badge venture-panel__badge--vermillion">
+          02 / FASHION
+        </span>
 
         <h2 className="venture-panel__headline venture-panel__headline--vermillion">
           Haiybellbottom
         </h2>
 
-        {/* PLACEHOLDER copy — refine with real brand voice once assets available */}
-        <p className="venture-panel__body">
-          Fashion with attitude. Haiybellbottom is built for people who dress on
-          their own terms — bold silhouettes, uncompromising details, made to be
-          noticed.
+        {/* Body — Stitch exact copy, right border accent */}
+        <p className="venture-panel__body venture-panel__body--vermillion-accent">
+          You can't buy it
         </p>
 
-        <div className="venture-panel__meta">
-          <p className="venture-panel__meta-line label-mono">
-            Category — Ready-to-wear
-          </p>
-          <p className="venture-panel__meta-line label-mono">
-            Ethos — Bold · Uncompromising · Distinct
-          </p>
-        </div>
-
-        {/* CTA — TODO: replace href with live store/collection URL once available */}
+        {/* CTA — solid primary fill (Stitch: "VIEW COLLECTION") */}
         <a
           href="#"
-          className="venture-panel__cta venture-panel__cta--vermillion"
+          className="venture-panel__cta venture-panel__cta--primary"
           aria-label="Explore Haiybellbottom collection — coming soon"
           onClick={(e) => e.preventDefault()}
         >
-          <span>Explore the Collection</span>
+          <span>VIEW COLLECTION</span>
           <span className="cta-arrow" aria-hidden="true">→</span>
         </a>
-        {/* TODO: uncomment and update href when live store is ready */}
-        {/* <a href="https://haiybellbottom.com" ...> */}
 
-        <p className="venture-panel__coming-soon label-mono">
+        <p className="venture-panel__coming-soon">
           Collection launching soon
         </p>
       </motion.div>
-    </motion.div>
+    </section>
   )
 }
