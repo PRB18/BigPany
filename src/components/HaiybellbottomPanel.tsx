@@ -1,7 +1,6 @@
 /* =============================================================
-   HaiybellbottomPanel.tsx — Stitch exact match
-   Full-bleed, full-width, bg image of red sculptural figure.
-   Content bottom-RIGHT: badge, large headline, "You can't buy it",
+   HaiybellbottomPanel.tsx
+   Split layout: Content on the left, floating masked image on the right.
    solid primary "VIEW COLLECTION" CTA.
    ============================================================= */
 import { useRef } from 'react'
@@ -36,22 +35,15 @@ export default function HaiybellbottomPanel() {
     <section
       ref={panelRef}
       id="haiybellbottom"
-      className="venture-panel venture-panel--haiybellbottom"
-      aria-label="Haiybellbottom — clothing venture"
+      className="venture-panel venture-panel--haiybellbottom split-layout"
+      aria-label="Haiybellbottom — fashion venture"
     >
-      {/* Background image with subtle parallax */}
-      <motion.div
-        className="venture-panel__bg"
-        style={prefersReduced ? undefined : { y: bgY }}
-        aria-hidden="true"
-      />
+      {/* Background solid color instead of full cover image */}
+      <div className="venture-panel__solid-bg" aria-hidden="true" />
 
-      {/* Gradient overlay — bottom to transparent */}
-      <div className="venture-panel__gradient venture-panel__gradient--vermillion" aria-hidden="true" />
-
-      {/* Content — bottom RIGHT (Stitch) */}
+      {/* Content — Left side */}
       <motion.div
-        className="venture-panel__content venture-panel__content--right"
+        className="venture-panel__content venture-panel__content--left"
         variants={prefersReduced ? REDUCED_VARIANTS : CONTENT_VARIANTS}
         initial="hidden"
         whileInView="visible"
@@ -59,33 +51,39 @@ export default function HaiybellbottomPanel() {
       >
         {/* Badge */}
         <span className="venture-panel__badge venture-panel__badge--vermillion">
-          02 / FASHION
+          02 // FASHION
         </span>
 
-        <h2 className="venture-panel__headline venture-panel__headline--vermillion">
-          HB
+        <h2 className="venture-panel__headline venture-panel__headline--vermillion" style={{ whiteSpace: 'normal', fontSize: 'clamp(2.5rem, 5vw, 5.5rem)', lineHeight: '1.1' }}>
+          THE NEW<br />
+          STANDARD.
         </h2>
-        <p className="venture-panel__subheading">Haiybellbottom</p>
 
-        {/* Body — Stitch exact copy, right border accent */}
-        <p className="venture-panel__body venture-panel__body--vermillion-accent">
-          You can't buy it
+        {/* Body — Updated copy from mockup */}
+        <p className="venture-panel__body venture-panel__body--fashion" style={{ textTransform: 'uppercase', letterSpacing: '0.1em', marginTop: 'var(--space-6)', maxWidth: '400px' }}>
+          HAIYBELLBOTTOM IS A MANIFESTO OF<br />
+          TECHNICAL PRECISION AND AVANT-GARDE<br />
+          SILHOUETTES. CRAFTED FOR THE<br />
+          VISIONARY, DEFINED BY THE VOID.
         </p>
 
-        {/* CTA — solid primary fill (Stitch: "VIEW COLLECTION") */}
+        {/* CTA */}
         <a
           href="#"
-          className="venture-panel__cta venture-panel__cta--primary"
-          aria-label="Explore Haiybellbottom collection — coming soon"
+          className="venture-panel__cta venture-panel__cta--outline"
+          aria-label="Explore Haiybellbottom collection"
           onClick={(e) => e.preventDefault()}
         >
           <span>VIEW COLLECTION</span>
-          <span className="cta-arrow" aria-hidden="true">→</span>
         </a>
+      </motion.div>
 
-        <p className="venture-panel__coming-soon">
-          Collection launching soon
-        </p>
+      {/* Image — Right side with radial mask for perfect blending */}
+      <motion.div 
+        className="venture-panel__image-wrapper"
+        style={prefersReduced ? undefined : { y: bgY }}
+      >
+        <img src="/haiybellbottom-bg.jpg" alt="Floating black puffer jacket" className="venture-panel__masked-image" />
       </motion.div>
     </section>
   )

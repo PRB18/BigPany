@@ -11,8 +11,49 @@
   flex-direction: column;
   justify-content: flex-end;
   padding: var(--space-12) var(--section-pad-x);
+  padding: var(--space-12) var(--section-pad-x);
   overflow: hidden;
   border-bottom: var(--hairline);
+}
+
+/* Split layout modifier */
+.venture-panel.split-layout {
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.venture-panel__solid-bg {
+  position: absolute;
+  inset: 0;
+  background-color: var(--bg-base);
+  z-index: 0;
+}
+
+/* Half width for split layout */
+.venture-panel__content--left {
+  align-self: center;
+  text-align: left;
+  flex: 1;
+}
+
+.venture-panel__image-wrapper {
+  flex: 1;
+  display: flex;
+  justify-content: flex-end;
+  position: relative;
+  z-index: 2;
+  height: 100%;
+}
+
+.venture-panel__masked-image {
+  max-width: 100%;
+  height: auto;
+  object-fit: contain;
+  /* Radial mask to blend edges smoothly into background */
+  -webkit-mask-image: radial-gradient(circle at center, black 40%, transparent 80%);
+  mask-image: radial-gradient(circle at center, black 40%, transparent 80%);
+  pointer-events: none;
 }
 
 /* Background image layer — covers panel, allows parallax */
@@ -212,6 +253,18 @@
 }
 
 /* Primary solid CTA (Haiybellbottom) */
+.venture-panel__cta--outline {
+  border: 1px solid var(--grey);
+  color: var(--paper);
+  background: transparent;
+}
+.venture-panel__cta--outline:hover,
+.venture-panel__cta--outline:focus-visible {
+  background: var(--grey);
+  color: var(--bg-base);
+  transform: translateY(-2px);
+}
+
 .venture-panel__cta--primary {
   border: 1px solid var(--primary);
   color: var(--on-primary);
@@ -254,6 +307,17 @@
 
   .venture-panel__bg {
     inset: -10% 0;
+  }
+
+  /* Stack split layout on mobile */
+  .venture-panel.split-layout {
+    flex-direction: column;
+    justify-content: center;
+  }
+  
+  .venture-panel__image-wrapper {
+    margin-top: var(--space-8);
+    justify-content: center;
   }
 
   /* Both panels left-align on mobile for readability */
