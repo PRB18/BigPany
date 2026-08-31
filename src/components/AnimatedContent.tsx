@@ -1,5 +1,6 @@
 import React, { useRef } from 'react';
 import { motion, useInView } from 'framer-motion';
+import type { Easing } from 'framer-motion';
 
 interface AnimatedContentProps {
   children: React.ReactNode;
@@ -7,7 +8,7 @@ interface AnimatedContentProps {
   direction?: 'vertical' | 'horizontal';
   reverse?: boolean;
   duration?: number;
-  ease?: string | number[];
+  ease?: Easing | Easing[];
   initialOpacity?: number;
   animateOpacity?: boolean;
   scale?: number;

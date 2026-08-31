@@ -4,13 +4,10 @@
    Fraunces italic+bold headline, bottom-right scroll indicator.
    ============================================================= */
 import { motion } from 'framer-motion'
-import { useReducedMotion } from '../hooks/useReducedMotion'
 import AnimatedContent from './AnimatedContent'
 import './Hero.css'
 
 export default function Hero() {
-  const prefersReduced = useReducedMotion()
-
   return (
     <header className="hero" aria-label="Bigpany — hero">
       {/* Sentinel — used by Nav to detect hero exit */}
