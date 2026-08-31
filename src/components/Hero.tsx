@@ -5,24 +5,11 @@
    ============================================================= */
 import { motion } from 'framer-motion'
 import { useReducedMotion } from '../hooks/useReducedMotion'
+import AnimatedContent from './AnimatedContent'
 import './Hero.css'
-
-const lineVariants = {
-  hidden: { opacity: 0, y: 40 },
-  visible: {
-    opacity: 1,
-    y: 0,
-    transition: { duration: 0.9, ease: [0.16, 1, 0.3, 1] },
-  },
-}
-const reducedLineVariants = {
-  hidden: { opacity: 0 },
-  visible: { opacity: 1, transition: { duration: 0.4 } },
-}
 
 export default function Hero() {
   const prefersReduced = useReducedMotion()
-  const lv = prefersReduced ? reducedLineVariants : lineVariants
 
   return (
     <header className="hero" aria-label="Bigpany — hero">
@@ -34,21 +21,26 @@ export default function Hero() {
 
       {/* Centered headline */}
       <div className="hero__content">
-        <motion.h1
-          className="hero__headline"
-          variants={lv}
-          initial="hidden"
-          animate="visible"
-          transition={prefersReduced
-            ? { duration: 0.4, delay: 0.2 }
-            : { duration: 0.9, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
+        <AnimatedContent
+          distance={150}
+          direction="horizontal"
+          reverse={false}
+          duration={1.2}
+          ease="backOut"
+          initialOpacity={0.2}
+          animateOpacity
+          scale={1.1}
+          threshold={0.2}
+          delay={0.3}
         >
-          <span className="hero__line-normal">Built on</span>
-          <br />
-          <span className="hero__line-italic">loyalty. Driven</span>
-          <br />
-          <span className="hero__line-italic">by vision</span>
-        </motion.h1>
+          <h1 className="hero__headline">
+            <span className="hero__line-normal">Built on</span>
+            <br />
+            <span className="hero__line-accent">loyalty. Driven</span>
+            <br />
+            <span className="hero__line-accent">by vision</span>
+          </h1>
+        </AnimatedContent>
       </div>
 
       {/* Scroll cue — bottom right (Stitch position) */}

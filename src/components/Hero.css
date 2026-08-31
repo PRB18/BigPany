@@ -6,7 +6,7 @@
   min-height: 100dvh;
   min-height: 100vh;
   background-color: var(--bg-base);
-  background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuBDPUbGQp-8dM8Eam4OB3tQGfAcsR-K03cPBhcWVxseiCuH6HGV3RFcdOA4sbWhOLqxZhLjtzDiHGgtB5cFem8lw7Viy-vaGrKO97pGJP9pMAhu8NHeEmcI93-Wf-mp9CIEG043FsKFSZeSRzAvU3KLswHYgukCbb-UbcPhbYesGUf7IxKICMeMhQRnDxzcN4dcV6CKilrjpcTXE0UYIlaWi1QM9zE4F9XO_NMxphYUlwmfBF_pBwYIYQ');
+  background-image: url('/hero-bg.jpg');
   background-size: cover;
   background-position: center;
   display: flex;
@@ -48,8 +48,9 @@
 
 /* Main headline */
 .hero__headline {
-  font-family: var(--font-display);
-  font-size: clamp(2.8rem, 7vw, 7.5rem);
+  font-family: var(--font-royal);
+  font-weight: 400;
+  font-size: clamp(2.8rem, 6vw, 6.5rem);
   line-height: 0.88;
   letter-spacing: -0.02em;
   color: var(--paper);
@@ -61,15 +62,13 @@
 
 /* Normal weight lines */
 .hero__line-normal {
-  font-weight: 300;
-  font-style: normal;
+  font-weight: 400;
   display: block;
 }
 
-/* Italic bold lines */
-.hero__line-italic {
-  font-weight: 700;
-  font-style: italic;
+/* Accent line */
+.hero__line-accent {
+  font-weight: 600;
   display: block;
 }
 

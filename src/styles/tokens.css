@@ -21,6 +21,7 @@
   /* ── Typography ────────────────────────────────────────── */
   --font-display: 'Fraunces', Georgia, serif;
   --font-syne:    'Syne', system-ui, sans-serif;
+  --font-royal:   'Cinzel', serif;
   --font-body:    'JetBrains Mono', 'Courier New', monospace;  /* Stitch: mono body */
   --font-mono:    'JetBrains Mono', 'Courier New', monospace;
 
