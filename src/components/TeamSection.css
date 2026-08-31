@@ -1,5 +1,5 @@
 /* =============================================================
-   TeamSection.css — Stitch exact match
+   TeamSection.css — Responsive: desktop + mobile
    ============================================================= */
 .team-section {
   background-color: var(--bg-base);
@@ -20,10 +20,10 @@
   gap: var(--space-4);
 }
 
-/* "The Architects." — Syne, large */
+/* "The Architects." headline — Syne */
 .team-section__headline {
   font-family: var(--font-syne);
-  font-size: clamp(2rem, 5vw, 4rem);
+  font-size: clamp(1.75rem, 5vw, 4rem);
   font-weight: 700;
   line-height: 1;
   letter-spacing: -0.02em;
@@ -61,7 +61,7 @@
   background-color: rgba(138, 133, 120, 0.06);
 }
 
-/* "01 // FOUNDER" label */
+/* "01 // FOUNDER" index label */
 .team-section__card-index {
   font-family: var(--font-mono);
   font-size: var(--text-mono);
@@ -75,7 +75,7 @@
 /* Large uppercase Fraunces name */
 .team-section__card-name {
   font-family: var(--font-display);
-  font-size: clamp(2rem, 3.5vw, 2.75rem);
+  font-size: clamp(1.75rem, 3.5vw, 2.75rem);
   font-weight: 400;
   line-height: 1;
   letter-spacing: -0.01em;
@@ -101,16 +101,50 @@
   letter-spacing: 0.02em;
 }
 
-/* Mobile — single col */
-@media (max-width: 640px) {
+/* ── Tablet — 2 col ──────────────────────────────────────── */
+@media (min-width: 641px) and (max-width: 960px) {
   .team-section__grid {
-    grid-template-columns: 1fr;
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .team-section__card {
+    padding: var(--space-6) var(--space-4);
   }
 }
 
-/* Tablet — 2 col */
-@media (min-width: 641px) and (max-width: 900px) {
+/* ── Mobile — 1 col ──────────────────────────────────────── */
+@media (max-width: 640px) {
+  .team-section {
+    padding: var(--space-12) 0;
+  }
+
+  .team-section__inner {
+    gap: var(--space-8);
+  }
+
   .team-section__grid {
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: 1fr;
+    border-left: none;
+    border-top: none;
+  }
+
+  .team-section__card {
+    padding: var(--space-6) 0;
+    border-right: none;
+    border-left: none;
+    border-bottom: var(--hairline);
+  }
+
+  .team-section__card-index {
+    margin-bottom: var(--space-4);
+  }
+
+  .team-section__card-name {
+    font-size: clamp(2rem, 10vw, 2.5rem);
+    margin-bottom: var(--space-4);
+  }
+
+  .team-section__rule {
+    width: 40%;
   }
 }

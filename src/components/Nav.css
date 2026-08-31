@@ -1,5 +1,5 @@
 /* =============================================================
-   Nav.css — Stitch exact match
+   Nav.css — Responsive: desktop + mobile
    ============================================================= */
 .nav {
   position: fixed;
@@ -16,7 +16,7 @@
 }
 
 .nav--scrolled {
-  background: rgba(19, 19, 18, 0.70);
+  background: rgba(19, 19, 18, 0.80);
   backdrop-filter: blur(14px);
   -webkit-backdrop-filter: blur(14px);
   border-bottom: var(--hairline);
@@ -36,7 +36,7 @@
 /* Wordmark — Syne bold uppercase */
 .nav__wordmark {
   font-family: var(--font-syne);
-  font-size: clamp(1.25rem, 2vw, 2rem);
+  font-size: clamp(1rem, 2vw, 1.75rem);
   font-weight: 700;
   letter-spacing: -0.02em;
   color: var(--paper);
@@ -71,7 +71,7 @@
   color: var(--paper);
 }
 
-/* ENQUIRE CTA — solid primary fill (Stitch style) */
+/* ENQUIRE CTA — solid primary fill */
 .nav__cta {
   font-family: var(--font-mono);
   font-size: var(--text-mono);
@@ -86,6 +86,7 @@
               color 0.18s var(--ease-out-expo),
               border-color 0.18s var(--ease-out-expo);
   flex-shrink: 0;
+  white-space: nowrap;
 }
 
 .nav__cta:hover,
@@ -94,15 +95,22 @@
   color: var(--primary);
 }
 
+/* ── Mobile ──────────────────────────────────────────────── */
 @media (max-width: 768px) {
+  .nav__inner {
+    gap: var(--space-2);
+  }
+
   .nav__links {
-    display: none;
+    display: none;  /* hide links on mobile — ENQUIRE remains */
   }
+
   .nav__wordmark {
-    font-size: 1.1rem;
+    font-size: 1rem;
   }
+
   .nav__cta {
-    font-size: 0.6rem;
-    padding: 0.4rem 0.9rem;
+    font-size: 0.55rem;
+    padding: 0.5rem 0.85rem;
   }
 }

@@ -63,8 +63,9 @@ export default function HaiybellbottomPanel() {
         </span>
 
         <h2 className="venture-panel__headline venture-panel__headline--vermillion">
-          Haiybellbottom
+          HB
         </h2>
+        <p className="venture-panel__subheading">Haiybellbottom</p>
 
         {/* Body — Stitch exact copy, right border accent */}
         <p className="venture-panel__body venture-panel__body--vermillion-accent">

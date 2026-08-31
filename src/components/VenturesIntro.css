@@ -1,5 +1,5 @@
 /* =============================================================
-   VenturesIntro.css — Stitch exact match
+   VenturesIntro.css — Responsive: desktop + mobile
    ============================================================= */
 .ventures-intro {
   background-color: var(--bg-base);
@@ -27,7 +27,7 @@
 /* Syne uppercase headline */
 .ventures-intro__headline {
   font-family: var(--font-syne);
-  font-size: clamp(1.5rem, 3vw, 3rem);
+  font-size: clamp(1.25rem, 3vw, 3rem);
   font-weight: 700;
   letter-spacing: -0.02em;
   text-transform: uppercase;
@@ -50,11 +50,11 @@
 .ventures-intro__divider {
   width: 100%;
   height: 1px;
-  background: rgba(255, 180, 166, 0.5);  /* primary at 50% */
+  background: rgba(255, 180, 166, 0.5);
   transform-origin: left;
 }
 
-/* Centered dot */
+/* Centered square dot */
 .ventures-intro__dot {
   position: absolute;
   top: 50%;
@@ -63,5 +63,20 @@
   width: 0.5rem;
   height: 0.5rem;
   background: var(--primary);
-  border-radius: 0;  /* Stitch uses square dots */
+  border-radius: 0;
+}
+
+/* ── Mobile ──────────────────────────────────────────────── */
+@media (max-width: 768px) {
+  .ventures-intro {
+    padding: var(--space-12) 0;
+  }
+
+  .ventures-intro__headline {
+    font-size: clamp(1.1rem, 6vw, 1.75rem);
+  }
+
+  .ventures-intro__divider-wrap {
+    max-width: 80vw;
+  }
 }

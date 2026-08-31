@@ -1,6 +1,5 @@
 /* =============================================================
-   VenturePanel.css — Stitch exact match
-   Full-bleed, full-width panels stacked vertically.
+   VenturePanel.css — Responsive: desktop + mobile
    ============================================================= */
 
 /* Base panel — full bleed, full height */
@@ -19,7 +18,7 @@
 /* Background image layer — covers panel, allows parallax */
 .venture-panel__bg {
   position: absolute;
-  inset: -15% 0;  /* overshoot for parallax room */
+  inset: -15% 0;
   background-size: cover;
   background-position: center;
   z-index: 0;
@@ -31,7 +30,7 @@
   background-image: url('/omnigrowth-bg.jpg');
 }
 
-/* Haiybellbottom — red sculptural figure bg */
+/* Haiybellbottom — fashion bg */
 .venture-panel--haiybellbottom .venture-panel__bg {
   background-image: url('/haiybellbottom-bg.jpg');
 }
@@ -47,8 +46,8 @@
 .venture-panel__gradient--moss {
   background: linear-gradient(
     to top,
-    rgba(17, 26, 16, 0.92) 0%,
-    rgba(17, 26, 16, 0.45) 45%,
+    rgba(17, 26, 16, 0.95) 0%,
+    rgba(17, 26, 16, 0.55) 50%,
     transparent 100%
   );
 }
@@ -56,8 +55,8 @@
 .venture-panel__gradient--vermillion {
   background: linear-gradient(
     to top,
-    rgba(30, 11, 8, 0.92) 0%,
-    rgba(30, 11, 8, 0.45) 45%,
+    rgba(30, 11, 8, 0.95) 0%,
+    rgba(30, 11, 8, 0.55) 50%,
     transparent 100%
   );
 }
@@ -75,7 +74,7 @@
   text-align: right;
 }
 
-/* Badge — mono, bordered pill */
+/* Badge */
 .venture-panel__badge {
   display: inline-block;
   font-family: var(--font-mono);
@@ -109,13 +108,22 @@
   letter-spacing: -0.02em;
   text-transform: uppercase;
   color: var(--paper);
-  margin-bottom: var(--space-4);
+  margin-bottom: var(--space-1);
   font-optical-sizing: auto;
 }
 
 .venture-panel__headline--vermillion {
-  /* keep paper color — Stitch keeps the name white */
   color: var(--paper);
+}
+
+/* Abbreviation sub-label */
+.venture-panel__subheading {
+  font-family: var(--font-mono);
+  font-size: var(--text-small);
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: rgba(225, 226, 224, 0.45);
+  margin-bottom: var(--space-6);
 }
 
 /* Body copy */
@@ -173,22 +181,22 @@
   display: inline-flex;
   align-items: center;
   justify-content: space-between;
-  gap: var(--space-6);
+  gap: var(--space-4);
   font-family: var(--font-mono);
   font-size: var(--text-mono);
   font-weight: 500;
   letter-spacing: 0.14em;
   text-transform: uppercase;
-  padding: 1.1rem 1.5rem;
+  padding: 1rem 1.5rem;
   border-radius: 0;
   transition: background 0.2s var(--ease-out-expo),
               color 0.2s var(--ease-out-expo),
               transform 0.18s var(--ease-out-expo);
   margin-bottom: var(--space-3);
-  min-width: 220px;
+  min-width: 200px;
 }
 
-/* Moss outline CTA (OmniGrowth — "LEARN MORE") */
+/* Moss outline CTA (OmniGrowth) */
 .venture-panel__cta--moss {
   border: 1px solid var(--moss-tint);
   color: var(--moss-tint);
@@ -202,7 +210,7 @@
   transform: translateY(-2px);
 }
 
-/* Primary solid CTA (Haiybellbottom — "VIEW COLLECTION") */
+/* Primary solid CTA (Haiybellbottom) */
 .venture-panel__cta--primary {
   border: 1px solid var(--primary);
   color: var(--on-primary);
@@ -233,4 +241,45 @@
   color: var(--grey);
   opacity: 0.55;
   margin-top: var(--space-1);
+}
+
+/* ── Mobile ──────────────────────────────────────────────── */
+@media (max-width: 768px) {
+  .venture-panel {
+    min-height: 75vh;        /* slightly shorter on mobile */
+    padding: var(--space-8) var(--section-pad-x);
+    justify-content: flex-end;
+  }
+
+  .venture-panel__bg {
+    inset: -10% 0;
+  }
+
+  /* Both panels left-align on mobile for readability */
+  .venture-panel__content--right {
+    align-self: flex-start;
+    text-align: left;
+  }
+
+  .venture-panel__body--vermillion-accent {
+    border-right: none;
+    border-left: 2px solid var(--primary);
+    padding-right: 0;
+    padding-left: var(--space-3);
+    text-align: left;
+  }
+
+  .venture-panel__headline {
+    font-size: clamp(2.5rem, 14vw, 4rem);
+  }
+
+  .venture-panel__cta {
+    min-width: 0;
+    width: 100%;
+    max-width: 320px;
+  }
+
+  .venture-panel__meta {
+    display: none;  /* hide dense meta on mobile */
+  }
 }
