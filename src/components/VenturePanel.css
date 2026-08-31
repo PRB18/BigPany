@@ -28,12 +28,12 @@
 
 /* OmniGrowth — crops/agriculture bg */
 .venture-panel--omnigrowth .venture-panel__bg {
-  background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuCtwDKKDqdhhS_lIDSZl3TgPp4ibYG3kESEMapcUvb2x4guQ6L2hfN1CzLaulx7wNehW9KeGDNnNRUchWjI4VxOA7u5lQ6eg2qLHpR0ofiVSj4Q8927RvnYS5YXY30mfb6uLpFIGLPL7pw9BMBBgKWxefLvItqouctYFtP5iMxJ10yRLTVZTl3P6121_E1zDNXrdxGuqPCERfQCdswbZx_1LjM5NFWdolsWuNA3ABENjRsX0VBoc2PN8A');
+  background-image: url('/omnigrowth-bg.jpg');
 }
 
 /* Haiybellbottom — red sculptural figure bg */
 .venture-panel--haiybellbottom .venture-panel__bg {
-  background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuDrXFWPPJXzPbsW9rJlMZjHev3l5CRvictZc0em-XEV-XezHa6THAAWN3lIW4-bXV9yDjbZ1C9aFlh8_8MeLQHf8ABpKI7LDmeCU_psgTROgxHUShFSNRTANoCUKHkcXjc08-FPwSHa_u-tzlHBrLDDP_VrZ7yCzJH8lBne7SKk9bU72pxaT0JjQirHdXehlPHCTBEKbqHn7KSI_4tL4MWG_R7-kdENBPXe8NpzxJIZQ76qtnRw_UY_4A');
+  background-image: url('/haiybellbottom-bg.jpg');
 }
 
 /* Gradient overlay — dark from bottom to transparent */
@@ -103,7 +103,7 @@
 /* Headline — large Fraunces uppercase */
 .venture-panel__headline {
   font-family: var(--font-display);
-  font-size: clamp(3rem, 8vw, 8rem);
+  font-size: clamp(2.5rem, 6vw, 6rem);
   font-weight: 700;
   line-height: 0.9;
   letter-spacing: -0.02em;

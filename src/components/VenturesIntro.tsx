@@ -32,7 +32,7 @@ export default function VenturesIntro() {
           viewport={{ once: true, margin: '-15%' }}
           transition={{ duration: 0.7, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
         >
-          Two ventures. One vision.
+          Multiple ventures. One vision.
         </motion.h2>
 
         {/* Animated divider with centered dot */}

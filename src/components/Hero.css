@@ -11,11 +11,11 @@
   background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuBDPUbGQp-8dM8Eam4OB3tQGfAcsR-K03cPBhcWVxseiCuH6HGV3RFcdOA4sbWhOLqxZhLjtzDiHGgtB5cFem8lw7Viy-vaGrKO97pGJP9pMAhu8NHeEmcI93-Wf-mp9CIEG043FsKFSZeSRzAvU3KLswHYgukCbb-UbcPhbYesGUf7IxKICMeMhQRnDxzcN4dcV6CKilrjpcTXE0UYIlaWi1QM9zE4F9XO_NMxphYUlwmfBF_pBwYIYQ');
   background-size: cover;
   background-position: center;
-  background-attachment: fixed;
   display: flex;
   flex-direction: column;
-  justify-content: flex-end;
-  padding-bottom: var(--space-12);
+  justify-content: center;
+  padding-top: var(--nav-height);
+  padding-bottom: var(--space-8);
   overflow: hidden;
 }
 
@@ -51,7 +51,7 @@
 /* Main headline — Fraunces, huge, centered, uppercase */
 .hero__headline {
   font-family: var(--font-display);
-  font-size: clamp(4rem, 10vw, 10rem);
+  font-size: clamp(2.8rem, 7vw, 7.5rem);
   line-height: 0.88;
   letter-spacing: -0.02em;
   color: var(--paper);
@@ -132,7 +132,7 @@
 
 @media (max-width: 768px) {
   .hero__headline {
-    font-size: clamp(3rem, 15vw, 5rem);
+    font-size: clamp(2.2rem, 12vw, 3.5rem);
     text-align: center;
   }
 }
