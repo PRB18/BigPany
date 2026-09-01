@@ -4,28 +4,27 @@
    floating ambient orbs, animated tagline, scroll indicator.
    ============================================================= */
 import { motion } from 'framer-motion'
+import type { Variants } from 'framer-motion'
 import './Hero.css'
 
-const LINE_VARIANTS = {
+const EASE: [number, number, number, number] = [0.16, 1, 0.3, 1]
+
+const LINE_VARIANTS: Variants = {
   hidden: { opacity: 0, y: 40, skewY: 3 },
   visible: (i: number) => ({
     opacity: 1,
     y: 0,
     skewY: 0,
-    transition: {
-      duration: 0.9,
-      delay: 0.4 + i * 0.18,
-      ease: [0.16, 1, 0.3, 1],
-    },
+    transition: { duration: 0.9, delay: 0.4 + i * 0.18, ease: EASE },
   }),
 }
 
-const TAG_VARIANTS = {
+const TAG_VARIANTS: Variants = {
   hidden: { opacity: 0, y: 16 },
   visible: {
     opacity: 1,
     y: 0,
-    transition: { duration: 0.7, delay: 1.1, ease: [0.16, 1, 0.3, 1] },
+    transition: { duration: 0.7, delay: 1.1, ease: EASE },
   },
 }
 

@@ -1,0 +1,154 @@
+/* =============================================================
+   HaiybellbottomPanel.css — Cinematic fashion-editorial layout
+   Jacket fills 100% of the panel. Text anchored bottom-left.
+   ============================================================= */
+
+/* ── Panel shell ─────────────────────────────────────────────── */
+.hb-panel {
+  position: relative;
+  min-height: 100vh;
+  width: 100%;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  padding: var(--space-12) var(--section-pad-x);
+  background: #0b0a09;
+  border-bottom: var(--hairline);
+}
+
+/* ── Jacket stage — covers the whole panel ───────────────────── */
+.hb-jacket-stage {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  overflow: hidden;
+}
+
+.hb-jacket-img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center 30%;
+  will-change: transform;
+  transform-origin: center center;
+  /* De-saturate slightly for editorial tone */
+  filter: brightness(0.75) contrast(1.05);
+}
+
+/* Warm gold rim-light glow at top-right — premium studio feel */
+.hb-jacket-glow {
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(ellipse 60% 55% at 72% 20%, rgba(229,198,139,0.12) 0%, transparent 65%),
+    radial-gradient(ellipse 40% 40% at 28% 75%, rgba(229,198,139,0.06) 0%, transparent 60%);
+  pointer-events: none;
+}
+
+/* ── Gradient scrim — legibility for text ────────────────────── */
+.hb-scrim {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+  background:
+    /* Strong bottom-to-top dark sweep for text area */
+    linear-gradient(
+      to top,
+      rgba(11, 10, 9, 0.97) 0%,
+      rgba(11, 10, 9, 0.82) 22%,
+      rgba(11, 10, 9, 0.35) 50%,
+      rgba(11, 10, 9, 0.05) 75%,
+      transparent 100%
+    ),
+    /* Subtle left vignette */
+    linear-gradient(
+      to right,
+      rgba(11, 10, 9, 0.55) 0%,
+      transparent 45%
+    );
+}
+
+/* ── Content overlay ─────────────────────────────────────────── */
+.hb-content {
+  position: relative;
+  z-index: 3;
+  max-width: 580px;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+}
+
+/* ── Headline — massive Fraunces ─────────────────────────────── */
+.hb-headline {
+  font-family: var(--font-display);
+  font-size: clamp(5rem, 14vw, 13rem);
+  font-weight: 800;
+  line-height: 0.85;
+  letter-spacing: -0.04em;
+  color: var(--paper);
+  font-optical-sizing: auto;
+  margin: 0;
+}
+
+/* ── Subheading ──────────────────────────────────────────────── */
+.hb-subheading {
+  font-family: var(--font-mono);
+  font-size: var(--text-small);
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: #e5c68a;
+  opacity: 0.8;
+  margin: 0;
+  padding-bottom: var(--space-2);
+  border-bottom: 1px solid rgba(229, 198, 139, 0.18);
+}
+
+/* ── Body copy ───────────────────────────────────────────────── */
+.hb-body {
+  margin-bottom: 0 !important;
+  border-left: 2px solid rgba(229, 198, 139, 0.5) !important;
+  color: rgba(229, 226, 224, 0.65) !important;
+  font-size: 0.8125rem !important;
+}
+
+/* ── CTA + coming-soon row ───────────────────────────────────── */
+.hb-footer-row {
+  display: flex;
+  align-items: center;
+  gap: var(--space-4);
+  flex-wrap: wrap;
+  padding-top: var(--space-2);
+}
+
+/* ── Mobile ──────────────────────────────────────────────────── */
+@media (max-width: 768px) {
+  .hb-panel {
+    min-height: 85vh;
+    padding: var(--space-8) var(--section-pad-x);
+  }
+
+  .hb-headline {
+    font-size: clamp(4rem, 20vw, 7rem);
+  }
+
+  .hb-jacket-img {
+    object-position: center 20%;
+  }
+
+  .hb-footer-row {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: var(--space-2);
+  }
+}
+
+/* ── Reduced motion ──────────────────────────────────────────── */
+@media (prefers-reduced-motion: reduce) {
+  .hb-jacket-img {
+    will-change: auto;
+  }
+}
