@@ -86,6 +86,10 @@ export default function HaiybellbottomPanel() {
           HB
         </motion.h2>
 
+        <motion.p className="hb-tagline" variants={prefersReduced ? REDUCED : ITEM}>
+          You can't buy it.
+        </motion.p>
+
         <motion.p className="hb-subheading" variants={prefersReduced ? REDUCED : ITEM}>
           Haiybellbottom
         </motion.p>
