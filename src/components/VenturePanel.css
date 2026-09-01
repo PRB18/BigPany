@@ -1,8 +1,9 @@
 /* =============================================================
-   VenturePanel.css — Responsive: desktop + mobile
+   VenturePanel.css — Stacked top-bottom, full-bleed panels
+   Premium jacket float, parallax overlays, editorial layout.
    ============================================================= */
 
-/* Base panel — full bleed, full height */
+/* ── Base panel — full bleed, full height ────────────────────── */
 .venture-panel {
   position: relative;
   min-height: 100vh;
@@ -15,7 +16,7 @@
   border-bottom: var(--hairline);
 }
 
-/* Background image layer — covers panel, allows parallax */
+/* ── Background image layer ──────────────────────────────────── */
 .venture-panel__bg {
   position: absolute;
   inset: -15% 0;
@@ -30,17 +31,17 @@
   background-image: url('/omnigrowth-bg.jpg');
 }
 
-/* Haiybellbottom — fashion bg (floating transparent jacket) */
-.venture-panel--haiybellbottom .venture-panel__bg {
-  background-image: url('/tenc-jacket.jpg');
-  background-size: contain;
-  background-repeat: no-repeat;
-  background-position: center;
-  /* Add a subtle drop shadow to make it float */
-  filter: drop-shadow(0 20px 40px rgba(0, 0, 0, 0.5));
+/* Haiybellbottom — dark textured background */
+.venture-panel--haiybellbottom {
+  background-color: #0d0c0b;
 }
 
-/* Gradient overlay — dark from bottom to transparent */
+.venture-panel--haiybellbottom .venture-panel__bg {
+  background-image: url('/haiybellbottom-bg.jpg');
+  opacity: 0.35;
+}
+
+/* ── Gradient overlays ──────────────────────────────────────── */
 .venture-panel__gradient {
   position: absolute;
   inset: 0;
@@ -51,7 +52,7 @@
 .venture-panel__gradient--moss {
   background: linear-gradient(
     to top,
-    rgba(17, 26, 16, 0.95) 0%,
+    rgba(17, 26, 16, 0.96) 0%,
     rgba(17, 26, 16, 0.55) 50%,
     transparent 100%
   );
@@ -59,27 +60,79 @@
 
 .venture-panel__gradient--vermillion {
   background: linear-gradient(
-    to top,
-    rgba(30, 11, 8, 0.95) 0%,
-    rgba(30, 11, 8, 0.55) 50%,
-    transparent 100%
+    135deg,
+    rgba(13, 12, 11, 0.98) 0%,
+    rgba(13, 12, 11, 0.8) 45%,
+    rgba(13, 12, 11, 0.15) 100%
   );
 }
 
-/* Content area — default: bottom left */
-.venture-panel__content {
-  position: relative;
+/* ── Floating jacket ─────────────────────────────────────────── */
+.venture-panel__jacket-wrap {
+  position: absolute;
+  right: 0%;
+  top: 50%;
+  transform: translateY(-50%);
+  width: min(65%, 850px);
   z-index: 2;
-  max-width: 640px;
+  pointer-events: none;
+  mix-blend-mode: lighten;
 }
 
-/* Right-aligned variant (Haiybellbottom) */
+.venture-panel__jacket-img {
+  width: 100%;
+  height: auto;
+  display: block;
+  object-fit: contain;
+  will-change: transform;
+  mask-image: linear-gradient(to bottom, black 85%, transparent 100%);
+  -webkit-mask-image: linear-gradient(to bottom, black 85%, transparent 100%);
+}
+
+/* Warm ambient glow beneath jacket */
+.venture-panel__jacket-glow {
+  position: absolute;
+  bottom: -10%;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 70%;
+  height: 120px;
+  background: radial-gradient(ellipse at center, rgba(229,198,139,0.12) 0%, transparent 70%);
+  filter: blur(30px);
+  pointer-events: none;
+}
+
+/* ── OmniGrowth SVG motif watermark ─────────────────────────── */
+.venture-panel__motif-wrap {
+  position: absolute;
+  right: 4%;
+  top: 50%;
+  transform: translateY(-50%);
+  width: min(42%, 460px);
+  z-index: 2;
+  pointer-events: none;
+  opacity: 0.35;
+}
+
+.venture-panel__motif-wrap .venture-motif {
+  width: 100%;
+  height: auto;
+}
+
+
+.venture-panel__content {
+  position: relative;
+  z-index: 3;
+  max-width: 520px;
+}
+
+/* Right-aligned variant (legacy, kept for backward compat) */
 .venture-panel__content--right {
   align-self: flex-end;
   text-align: right;
 }
 
-/* Badge */
+/* ── Badge ───────────────────────────────────────────────────── */
 .venture-panel__badge {
   display: inline-block;
   font-family: var(--font-mono);
@@ -100,22 +153,21 @@
 }
 
 .venture-panel__badge--vermillion {
-  color: var(--primary);
-  background: rgba(30, 11, 8, 0.65);
+  color: #e5c68a;
+  background: rgba(13, 12, 11, 0.65);
+  border-color: rgba(229, 198, 139, 0.35);
 }
 
-/* Headline — large Fraunces uppercase */
+/* ── Headline ────────────────────────────────────────────────── */
 .venture-panel__headline {
   font-family: var(--font-display);
-  font-size: clamp(2.5rem, 6vw, 6rem);
+  font-size: clamp(2.8rem, 5.5vw, 6rem);
   font-weight: 700;
-  line-height: 0.9;
+  line-height: 0.92;
   letter-spacing: -0.02em;
-  text-transform: uppercase;
   color: var(--paper);
   margin-bottom: var(--space-1);
   font-optical-sizing: auto;
-  white-space: nowrap;
 }
 
 .venture-panel__headline--vermillion {
@@ -128,21 +180,20 @@
   font-size: var(--text-small);
   letter-spacing: 0.18em;
   text-transform: uppercase;
-  color: rgba(225, 226, 224, 0.45);
+  color: rgba(225, 226, 224, 0.4);
   margin-bottom: var(--space-6);
 }
 
-/* Body copy */
+/* ── Body copy ───────────────────────────────────────────────── */
 .venture-panel__body {
   font-family: var(--font-mono);
   font-size: var(--text-small);
   line-height: 1.65;
-  color: rgba(225, 226, 224, 0.8);
+  color: rgba(225, 226, 224, 0.75);
   max-width: 44ch;
-  margin-bottom: var(--space-4);
+  margin-bottom: var(--space-6);
 }
 
-/* Left border accent (OmniGrowth) */
 .venture-panel__body--moss-accent {
   border-left: 2px solid var(--moss-tint);
   padding-left: var(--space-3);
@@ -153,19 +204,17 @@
   -webkit-backdrop-filter: blur(4px);
 }
 
-/* Right border accent (Haiybellbottom) */
 .venture-panel__body--vermillion-accent {
-  border-right: 2px solid var(--primary);
-  padding-right: var(--space-3);
+  border-left: 2px solid #e5c68a;
+  padding-left: var(--space-3);
   padding-top: 0.4rem;
   padding-bottom: 0.4rem;
-  background: rgba(30, 11, 8, 0.35);
+  background: rgba(13, 12, 11, 0.45);
   backdrop-filter: blur(4px);
   -webkit-backdrop-filter: blur(4px);
-  text-align: right;
 }
 
-/* Meta rows */
+/* ── Meta rows ───────────────────────────────────────────────── */
 .venture-panel__meta {
   display: flex;
   flex-direction: column;
@@ -182,7 +231,7 @@
   color: var(--grey);
 }
 
-/* CTA button — shared base */
+/* ── CTA button — shared base ────────────────────────────────── */
 .venture-panel__cta {
   display: inline-flex;
   align-items: center;
@@ -195,9 +244,11 @@
   text-transform: uppercase;
   padding: 1rem 1.5rem;
   border-radius: 0;
-  transition: background 0.2s var(--ease-out-expo),
-              color 0.2s var(--ease-out-expo),
-              transform 0.18s var(--ease-out-expo);
+  transition:
+    background 0.25s var(--ease-out-expo),
+    color 0.25s var(--ease-out-expo),
+    transform 0.2s var(--ease-out-expo),
+    box-shadow 0.25s var(--ease-out-expo);
   margin-bottom: var(--space-3);
   min-width: 200px;
 }
@@ -213,29 +264,32 @@
 .venture-panel__cta--moss:focus-visible {
   background: var(--moss-tint);
   color: var(--moss-dark);
-  transform: translateY(-2px);
+  transform: translateY(-3px);
+  box-shadow: 0 12px 32px rgba(122, 154, 110, 0.25);
 }
 
-/* Primary solid CTA (Haiybellbottom) */
+/* Gold outline CTA (Haiybellbottom) */
 .venture-panel__cta--primary {
-  border: 1px solid var(--primary);
-  color: var(--on-primary);
-  background: var(--primary);
+  border: 1px solid #e5c68a;
+  color: #e5c68a;
+  background: rgba(229, 198, 138, 0.08);
+  backdrop-filter: blur(4px);
 }
 .venture-panel__cta--primary:hover,
 .venture-panel__cta--primary:focus-visible {
-  background: transparent;
-  color: var(--primary);
-  transform: translateY(-2px);
+  background: #e5c68a;
+  color: #131312;
+  transform: translateY(-3px);
+  box-shadow: 0 12px 32px rgba(229, 198, 138, 0.2);
 }
 
 .cta-arrow {
   display: inline-block;
-  transition: transform 0.18s var(--ease-out-expo);
+  transition: transform 0.2s var(--ease-out-expo);
 }
 .venture-panel__cta:hover .cta-arrow,
 .venture-panel__cta:focus-visible .cta-arrow {
-  transform: translateX(4px);
+  transform: translateX(5px);
 }
 
 /* Coming soon label */
@@ -245,14 +299,14 @@
   letter-spacing: 0.12em;
   text-transform: uppercase;
   color: var(--grey);
-  opacity: 0.55;
+  opacity: 0.5;
   margin-top: var(--space-1);
 }
 
-/* ── Mobile ──────────────────────────────────────────────── */
+/* ── Mobile ──────────────────────────────────────────────────── */
 @media (max-width: 768px) {
   .venture-panel {
-    min-height: 75vh;        /* slightly shorter on mobile */
+    min-height: 80vh;
     padding: var(--space-8) var(--section-pad-x);
     justify-content: flex-end;
   }
@@ -261,22 +315,26 @@
     inset: -10% 0;
   }
 
-  /* Both panels left-align on mobile for readability */
+  /* Jacket scales down and moves to top-center on mobile */
+  .venture-panel__jacket-wrap {
+    right: auto;
+    top: 6%;
+    left: 50%;
+    transform: translateX(-50%);
+    width: min(70%, 300px);
+  }
+
   .venture-panel__content--right {
     align-self: flex-start;
     text-align: left;
   }
 
   .venture-panel__body--vermillion-accent {
-    border-right: none;
-    border-left: 2px solid var(--primary);
-    padding-right: 0;
-    padding-left: var(--space-3);
     text-align: left;
   }
 
   .venture-panel__headline {
-    font-size: clamp(2rem, 9vw, 4rem);
+    font-size: clamp(2rem, 10vw, 4rem);
   }
 
   .venture-panel__cta {
@@ -286,6 +344,6 @@
   }
 
   .venture-panel__meta {
-    display: none;  /* hide dense meta on mobile */
+    display: none;
   }
 }

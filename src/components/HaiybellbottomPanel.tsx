@@ -1,8 +1,7 @@
 /* =============================================================
-   HaiybellbottomPanel.tsx — Stitch exact match
-   Full-bleed, full-width, bg image of red sculptural figure.
-   Content bottom-RIGHT: badge, large headline, "You can't buy it",
-   solid primary "VIEW COLLECTION" CTA.
+   HaiybellbottomPanel.tsx — Premium jacket showcase
+   Full-bleed dark panel. Jacket image floats right with
+   parallax. Text content bottom-left, premium animations.
    ============================================================= */
 import { useRef } from 'react'
 import { motion, useScroll, useTransform } from 'framer-motion'
@@ -10,16 +9,26 @@ import { useReducedMotion } from '../hooks/useReducedMotion'
 import './VenturePanel.css'
 
 const CONTENT_VARIANTS = {
-  hidden: { opacity: 0, y: 26 },
+  hidden: { opacity: 0, y: 32 },
   visible: {
     opacity: 1,
     y: 0,
-    transition: { duration: 0.7, ease: [0.16, 1, 0.3, 1] },
+    transition: { duration: 0.85, ease: [0.16, 1, 0.3, 1] },
   },
 }
 const REDUCED_VARIANTS = {
   hidden: { opacity: 0 },
   visible: { opacity: 1, transition: { duration: 0.4 } },
+}
+
+const JACKET_VARIANTS = {
+  hidden: { opacity: 0, y: 40, scale: 0.96 },
+  visible: {
+    opacity: 1,
+    y: 0,
+    scale: 1,
+    transition: { duration: 1.1, delay: 0.2, ease: [0.16, 1, 0.3, 1] },
+  },
 }
 
 export default function HaiybellbottomPanel() {
@@ -30,7 +39,11 @@ export default function HaiybellbottomPanel() {
     target: panelRef,
     offset: ['start end', 'end start'],
   })
-  const bgY = useTransform(scrollYProgress, [0, 1], ['0%', '15%'])
+
+  /* Jacket drifts upward gently as user scrolls */
+  const jacketY = useTransform(scrollYProgress, [0, 1], ['8%', '-8%'])
+  /* Subtle bg parallax */
+  const bgY = useTransform(scrollYProgress, [0, 1], ['0%', '12%'])
 
   return (
     <section
@@ -39,19 +52,39 @@ export default function HaiybellbottomPanel() {
       className="venture-panel venture-panel--haiybellbottom"
       aria-label="Haiybellbottom — clothing venture"
     >
-      {/* Background image with subtle parallax */}
+      {/* Dark textured background with subtle parallax */}
       <motion.div
         className="venture-panel__bg"
         style={prefersReduced ? undefined : { y: bgY }}
         aria-hidden="true"
       />
 
-      {/* Gradient overlay — bottom to transparent */}
+      {/* Gradient overlay */}
       <div className="venture-panel__gradient venture-panel__gradient--vermillion" aria-hidden="true" />
 
-      {/* Content — bottom RIGHT (Stitch) */}
+      {/* Floating jacket image — parallax drift */}
       <motion.div
-        className="venture-panel__content venture-panel__content--right"
+        className="venture-panel__jacket-wrap"
+        variants={prefersReduced ? REDUCED_VARIANTS : JACKET_VARIANTS}
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ once: true, margin: '-8%' }}
+        aria-hidden="true"
+      >
+        <motion.img
+          src="/lucid-jacket.jpg"
+          alt=""
+          className="venture-panel__jacket-img"
+          style={prefersReduced ? undefined : { y: jacketY }}
+          draggable={false}
+        />
+        {/* Glow beneath jacket */}
+        <div className="venture-panel__jacket-glow" aria-hidden="true" />
+      </motion.div>
+
+      {/* Content — bottom left */}
+      <motion.div
+        className="venture-panel__content"
         variants={prefersReduced ? REDUCED_VARIANTS : CONTENT_VARIANTS}
         initial="hidden"
         whileInView="visible"
@@ -59,20 +92,21 @@ export default function HaiybellbottomPanel() {
       >
         {/* Badge */}
         <span className="venture-panel__badge venture-panel__badge--vermillion">
-          02 / FASHION
+          02 / APPAREL · OBJECTS
         </span>
 
-        <h2 className="venture-panel__headline venture-panel__headline--vermillion">
+        <h2 className="venture-panel__headline">
           HB
         </h2>
         <p className="venture-panel__subheading">Haiybellbottom</p>
 
-        {/* Body — Stitch exact copy, right border accent */}
+        {/* Body */}
         <p className="venture-panel__body venture-panel__body--vermillion-accent">
-          You can't buy it
+          A study in warmth, utility, and considered everyday design.
+          You can't buy it — yet.
         </p>
 
-        {/* CTA — solid primary fill (Stitch: "VIEW COLLECTION") */}
+        {/* CTA */}
         <a
           href="#"
           className="venture-panel__cta venture-panel__cta--primary"

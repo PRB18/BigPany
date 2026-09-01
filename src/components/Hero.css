@@ -1,20 +1,30 @@
 /* =============================================================
-   Hero.css — Responsive: desktop + mobile
+   Hero.css — Video background hero, premium animations
    ============================================================= */
 .hero {
   position: relative;
   min-height: 100dvh;
   min-height: 100vh;
   background-color: var(--bg-base);
-  background-image: url('/hero-bg.jpg');
-  background-size: cover;
-  background-position: center;
   display: flex;
   flex-direction: column;
   justify-content: center;
+  align-items: center;
   padding-top: var(--nav-height);
   padding-bottom: var(--space-8);
   overflow: hidden;
+}
+
+/* ── Video background ──────────────────────────────────────── */
+.hero__video {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  z-index: 0;
+  opacity: 0.55;
 }
 
 /* Sentinel at bottom of hero for nav scroll detection */
@@ -26,53 +36,147 @@
   height: 1px;
 }
 
-/* Darkening overlay */
+/* Cinematic darkening overlay — gradient for depth */
 .hero__overlay {
   position: absolute;
   inset: 0;
-  background: rgba(19, 19, 18, 0.45);
+  background:
+    radial-gradient(ellipse at 50% 0%, rgba(19,19,18,0.3) 0%, transparent 70%),
+    linear-gradient(to bottom, rgba(19,19,18,0.6) 0%, rgba(19,19,18,0.2) 50%, rgba(19,19,18,0.75) 100%);
   z-index: 1;
   pointer-events: none;
 }
 
-/* Content wrapper */
+/* ── Ambient floating orbs ──────────────────────────────────── */
+.hero__orbs {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  pointer-events: none;
+  overflow: hidden;
+}
+
+.hero__orb {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(80px);
+  opacity: 0;
+  animation: orbFloat 8s var(--ease-in-out) infinite;
+}
+
+.hero__orb--1 {
+  width: 600px;
+  height: 600px;
+  background: radial-gradient(circle, rgba(138,105,56,0.18) 0%, transparent 70%);
+  top: -10%;
+  left: -5%;
+  animation-delay: 0s;
+  animation-duration: 12s;
+}
+
+.hero__orb--2 {
+  width: 500px;
+  height: 500px;
+  background: radial-gradient(circle, rgba(122,154,110,0.12) 0%, transparent 70%);
+  bottom: 0%;
+  right: 5%;
+  animation-delay: -4s;
+  animation-duration: 15s;
+}
+
+.hero__orb--3 {
+  width: 350px;
+  height: 350px;
+  background: radial-gradient(circle, rgba(229,198,139,0.09) 0%, transparent 70%);
+  top: 40%;
+  left: 55%;
+  animation-delay: -8s;
+  animation-duration: 10s;
+}
+
+@keyframes orbFloat {
+  0%   { opacity: 0; transform: translate(0, 0) scale(1); }
+  15%  { opacity: 1; }
+  50%  { transform: translate(20px, -30px) scale(1.08); }
+  85%  { opacity: 1; }
+  100% { opacity: 0; transform: translate(0, 0) scale(1); }
+}
+
+/* ── Eyebrow label — top-right ─────────────────────────────── */
+.hero__eyebrow {
+  position: absolute;
+  top: calc(var(--nav-height) + var(--space-4));
+  right: var(--section-pad-x);
+  font-family: var(--font-mono);
+  font-size: var(--text-mono);
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: rgba(229, 226, 224, 0.45);
+  z-index: 3;
+}
+
+/* ── Content wrapper ────────────────────────────────────────── */
 .hero__content {
   position: relative;
-  z-index: 2;
+  z-index: 3;
   width: 100%;
   padding: 0 var(--section-pad-x);
   display: flex;
-  justify-content: center;
+  flex-direction: column;
   align-items: center;
+  gap: var(--space-4);
+  text-align: center;
 }
 
-/* Main headline */
+/* ── Main headline ─────────────────────────────────────────── */
 .hero__headline {
   font-family: var(--font-royal);
   font-weight: 400;
-  font-size: clamp(2.8rem, 6vw, 6.5rem);
-  line-height: 0.88;
+  font-size: clamp(2.8rem, 6.5vw, 7rem);
+  line-height: 0.9;
   letter-spacing: -0.02em;
   color: var(--paper);
   font-optical-sizing: auto;
-  text-align: center;
   text-transform: uppercase;
-  padding-bottom: 0.1em;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.12em;
+  overflow: visible;
 }
 
-/* Normal weight lines */
+/* Overflow clip per-line for reveal effect */
+.hero__line-wrap {
+  display: block;
+  overflow: hidden;
+  padding-bottom: 0.05em;
+}
+
 .hero__line-normal {
+  display: block;
   font-weight: 400;
-  display: block;
 }
 
-/* Accent line */
 .hero__line-accent {
-  font-weight: 600;
   display: block;
+  font-weight: 600;
+  background: linear-gradient(135deg, var(--paper) 40%, #e5c68a 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
 }
 
-/* Scroll cue — bottom RIGHT */
+/* ── Sub-tagline ────────────────────────────────────────────── */
+.hero__tagline {
+  font-family: var(--font-mono);
+  font-size: var(--text-small);
+  letter-spacing: 0.08em;
+  color: rgba(229, 226, 224, 0.5);
+  text-transform: uppercase;
+  margin-top: var(--space-3);
+}
+
+/* ── Scroll cue — bottom RIGHT ──────────────────────────────── */
 .hero__scroll-cue {
   position: absolute;
   bottom: var(--space-6);
@@ -81,7 +185,7 @@
   flex-direction: column;
   align-items: center;
   gap: var(--space-2);
-  z-index: 2;
+  z-index: 3;
 }
 
 .hero__scroll-label {
@@ -92,14 +196,14 @@
   writing-mode: vertical-rl;
   transform: rotate(180deg);
   text-transform: uppercase;
-  opacity: 0.7;
+  opacity: 0.55;
 }
 
 .hero__scroll-line {
   width: 1px;
   height: 4rem;
   background: var(--paper);
-  opacity: 0.35;
+  opacity: 0.25;
   position: relative;
   overflow: hidden;
 }
@@ -120,23 +224,24 @@
   100% { transform: translateY(300%); }
 }
 
-/* ── Reduced motion ──────────────────────────────────────── */
+/* ── Reduced motion ──────────────────────────────────────────── */
 @media (prefers-reduced-motion: reduce) {
-  .hero__scroll-line::after {
-    animation: none;
-    opacity: 0;
-  }
+  .hero__orb { animation: none; opacity: 0; }
+  .hero__scroll-line::after { animation: none; opacity: 0; }
 }
 
-/* ── Mobile ──────────────────────────────────────────────── */
+/* ── Mobile ──────────────────────────────────────────────────── */
 @media (max-width: 768px) {
   .hero__headline {
     font-size: clamp(2.2rem, 13vw, 3.5rem);
-    line-height: 0.92;
+    line-height: 0.95;
   }
 
-  /* Hide scroll indicator on small screens — saves space */
-  .hero__scroll-cue {
-    display: none;
-  }
+  .hero__eyebrow { display: none; }
+
+  .hero__scroll-cue { display: none; }
+
+  .hero__orb--1 { width: 300px; height: 300px; }
+  .hero__orb--2 { width: 250px; height: 250px; }
+  .hero__orb--3 { display: none; }
 }
