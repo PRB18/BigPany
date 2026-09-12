@@ -11,7 +11,7 @@ const team = [
   {
     index: '01',
     role: 'FOUNDER',
-    name: 'Krisha',
+    name: 'Krishna',
     description:
       'Vision and strategic direction. Bridging the gap between raw data intelligence and market execution across both ventures.',
   },
