@@ -29,6 +29,7 @@
 /* OmniGrowth — crops/agriculture bg */
 .venture-panel--omnigrowth .venture-panel__bg {
   background-image: url('/omnigrowth-bg.jpg');
+  background-position: center 60%;
 }
 
 /* Haiybellbottom — dark textured background */

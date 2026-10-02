@@ -68,20 +68,28 @@ export default function Hero() {
       {/* Centered headline — staggered per line */}
       <div className="hero__content">
         <h1 className="hero__headline">
-          {['Built on', 'loyalty. Driven', 'by vision'].map((line, i) => (
-            <span key={line} className="hero__line-wrap">
-              <motion.span
-                className={i === 0 ? 'hero__line-normal' : 'hero__line-accent'}
-                custom={i}
-                variants={LINE_VARIANTS}
-                initial="hidden"
-                animate="visible"
-              >
-                {line}
-              </motion.span>
-            </span>
-          ))}
+          <span className="hero__line-wrap">
+            <motion.span
+              className="hero__line-normal"
+              custom={0}
+              variants={LINE_VARIANTS}
+              initial="hidden"
+              animate="visible"
+            >
+              BIGPANY
+            </motion.span>
+          </span>
         </h1>
+        
+        {/* Elegant tagline below the massive brand name */}
+        <motion.p
+          className="hero__subtitle"
+          variants={TAG_VARIANTS}
+          initial="hidden"
+          animate="visible"
+        >
+          BUILT ON LOYALTY. DRIVEN BY VISION.
+        </motion.p>
       </div>
 
       {/* Scroll cue — bottom right */}

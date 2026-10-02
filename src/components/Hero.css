@@ -130,19 +130,19 @@
 
 /* ── Main headline ─────────────────────────────────────────── */
 .hero__headline {
-  font-family: var(--font-royal);
+  font-family: var(--font-display);
   font-weight: 400;
-  font-size: clamp(2.8rem, 6.5vw, 7rem);
-  line-height: 0.9;
-  letter-spacing: -0.02em;
-  color: var(--paper);
-  font-optical-sizing: auto;
+  font-size: clamp(4rem, 15vw, 14rem);
+  line-height: 0.8;
+  letter-spacing: -0.04em;
+  color: var(--bone);
   text-transform: uppercase;
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 0.12em;
+  gap: 0;
   overflow: visible;
+  margin-bottom: var(--space-4);
 }
 
 /* Overflow clip per-line for reveal effect */
@@ -159,11 +159,17 @@
 
 .hero__line-accent {
   display: block;
-  font-weight: 600;
-  background: linear-gradient(135deg, var(--paper) 40%, #e5c68a 100%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
+  font-weight: 400;
+  color: var(--bone);
+}
+
+/* ── Subtitle ────────────────────────────────────────────── */
+.hero__subtitle {
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.3em;
+  color: var(--gold);
+  text-transform: uppercase;
 }
 
 /* ── Sub-tagline ────────────────────────────────────────────── */

@@ -1,13 +1,14 @@
 /* =============================================================
    OmniGrowthPanel.tsx — Full-bleed agritech panel
-   Premium content-reveal animations, OmniGrowthMotif SVG
-   as watermark overlay. Content bottom-left.
+   Safe parallax via framer-motion useScroll/useTransform.
+   No GSAP pin — natural scroll flow preserved.
    ============================================================= */
 import { useRef } from 'react'
 import { motion, useScroll, useTransform } from 'framer-motion'
 import { useReducedMotion } from '../hooks/useReducedMotion'
 import OmniGrowthMotif from '../assets/OmniGrowthMotif'
 import './VenturePanel.css'
+import './OmniGrowthPanel.css'
 
 const CONTENT_VARIANTS = {
   hidden: { opacity: 0, y: 32 },
@@ -21,7 +22,6 @@ const REDUCED_VARIANTS = {
   hidden: { opacity: 0 },
   visible: { opacity: 1, transition: { duration: 0.4 } },
 }
-
 const MOTIF_VARIANTS = {
   hidden: { opacity: 0, scale: 0.92 },
   visible: {
@@ -39,17 +39,19 @@ export default function OmniGrowthPanel() {
     target: panelRef,
     offset: ['start end', 'end start'],
   })
-  const bgY = useTransform(scrollYProgress, [0, 1], ['0%', '15%'])
+
+  // Background parallaxes up as you scroll through — cinematic depth
+  const bgY = useTransform(scrollYProgress, [0, 1], ['0%', '18%'])
   const motifY = useTransform(scrollYProgress, [0, 1], ['0%', '-10%'])
 
   return (
     <section
       ref={panelRef}
       id="omnigrowth"
-      className="venture-panel venture-panel--omnigrowth"
+      className="venture-panel venture-panel--omnigrowth og-panel"
       aria-label="OmniGrowth — agritech venture"
     >
-      {/* Background image with subtle parallax */}
+      {/* Background image — parallax via motion value */}
       <motion.div
         className="venture-panel__bg"
         style={prefersReduced ? undefined : { y: bgY }}
@@ -59,9 +61,9 @@ export default function OmniGrowthPanel() {
       {/* Gradient overlay */}
       <div className="venture-panel__gradient venture-panel__gradient--moss" aria-hidden="true" />
 
-      {/* OmniGrowth SVG motif — large watermark, parallax drift */}
+      {/* OmniGrowth SVG motif — watermark, counter-parallax */}
       <motion.div
-        className="venture-panel__motif-wrap"
+        className="venture-panel__motif-wrap og-motif-wrap"
         variants={prefersReduced ? REDUCED_VARIANTS : MOTIF_VARIANTS}
         initial="hidden"
         whileInView="visible"
@@ -80,20 +82,17 @@ export default function OmniGrowthPanel() {
         whileInView="visible"
         viewport={{ once: true, margin: '-10%' }}
       >
-        {/* Badge */}
         <span className="venture-panel__badge venture-panel__badge--moss">
           01 / GROWTH · COMMERCE
         </span>
 
         <h2 className="venture-panel__headline">OmniGrowth</h2>
 
-        {/* Body with left border accent */}
         <p className="venture-panel__body venture-panel__body--moss-accent">
           Agricultural intelligence for the people who feed us. Real-time crop
           advisory and market pricing — built for Bharat.
         </p>
 
-        {/* Meta */}
         <div className="venture-panel__meta">
           <p className="venture-panel__meta-line">Platform — Mobile App</p>
           <p className="venture-panel__meta-line">
@@ -101,7 +100,6 @@ export default function OmniGrowthPanel() {
           </p>
         </div>
 
-        {/* CTA — outline moss */}
         <a
           href="https://omnigrowt.netlify.app/"
           target="_blank"

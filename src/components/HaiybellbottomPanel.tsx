@@ -1,25 +1,27 @@
 /* =============================================================
-   HaiybellbottomPanel.tsx — Premium editorial fashion layout
-   Full-viewport. Jacket image DOMINATES the entire panel as
-   a centrepiece. Text anchored bottom-left over a gradient
-   scrim. Cinematic parallax, staggered text reveal.
+   HaiybellbottomPanel.tsx — Premium Editorial Split
    ============================================================= */
-import { useRef } from 'react'
-import { motion, useScroll, useTransform } from 'framer-motion'
+import { useState, useEffect } from 'react'
+import { motion, AnimatePresence } from 'framer-motion'
 import { useReducedMotion } from '../hooks/useReducedMotion'
-import './VenturePanel.css'
 import './HaiybellbottomPanel.css'
+
+const HB_IMAGES = [
+  { src: '/hb-1.jpg', alt: 'Haiybellbottom — collection one' },
+  { src: '/hb-2.jpg', alt: 'Haiybellbottom — collection two' },
+  { src: '/hb-3.jpg', alt: 'Haiybellbottom — collection three' },
+]
 
 const STAGGER = {
   hidden: {},
-  visible: { transition: { staggerChildren: 0.1, delayChildren: 0.2 } },
+  visible: { transition: { staggerChildren: 0.12, delayChildren: 0.25 } },
 }
 const ITEM = {
-  hidden: { opacity: 0, y: 20 },
+  hidden: { opacity: 0, y: 28 },
   visible: {
     opacity: 1,
     y: 0,
-    transition: { duration: 0.75, ease: [0.16, 1, 0.3, 1] as [number, number, number, number] },
+    transition: { duration: 0.8, ease: [0.16, 1, 0.3, 1] as [number, number, number, number] },
   },
 }
 const REDUCED = {
@@ -27,90 +29,111 @@ const REDUCED = {
   visible: { opacity: 1, transition: { duration: 0.4 } },
 }
 
+const INTERVAL_MS = 5000
+
 export default function HaiybellbottomPanel() {
-  const panelRef = useRef<HTMLDivElement>(null)
   const prefersReduced = useReducedMotion()
+  const [activeIndex, setActiveIndex] = useState(0)
 
-  const { scrollYProgress } = useScroll({
-    target: panelRef,
-    offset: ['start end', 'end start'],
-  })
-
-  /* Jacket slowly drifts upward — cinematic parallax */
-  const jacketY    = useTransform(scrollYProgress, [0, 1], ['6%', '-6%'])
-  const jacketScale = useTransform(scrollYProgress, [0, 0.5], [1.04, 1])
+  // Autoplay through images
+  useEffect(() => {
+    if (prefersReduced) return
+    const id = setInterval(() => {
+      setActiveIndex((i) => (i + 1) % HB_IMAGES.length)
+    }, INTERVAL_MS)
+    return () => clearInterval(id)
+  }, [prefersReduced])
 
   return (
     <section
-      ref={panelRef}
       id="haiybellbottom"
-      className="venture-panel venture-panel--haiybellbottom hb-panel"
+      className="hb-editorial-sec"
       aria-label="Haiybellbottom — clothing venture"
     >
-      {/* ── Full-panel jacket image ── */}
-      <motion.div
-        className="hb-jacket-stage"
-        initial={{ opacity: 0 }}
-        whileInView={{ opacity: 1 }}
-        viewport={{ once: true }}
-        transition={{ duration: 1.2, ease: 'easeOut' }}
-        aria-hidden="true"
-      >
-        <motion.img
-          src="/lucid-jacket.jpg"
-          alt=""
-          className="hb-jacket-img"
-          style={prefersReduced ? undefined : { y: jacketY, scale: jacketScale }}
-          draggable={false}
-        />
-        {/* Warm gold glow on jacket */}
-        <div className="hb-jacket-glow" aria-hidden="true" />
-      </motion.div>
+      <div className="hb-editorial-grid">
+        
+        {/* ── Left Column: Typography & Content ── */}
+        <motion.div
+          className="hb-editorial-content"
+          variants={prefersReduced ? REDUCED : STAGGER}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, margin: '-12%' }}
+        >
+          <motion.div className="eyebrow" variants={prefersReduced ? REDUCED : ITEM}>
+            <span className="dot" aria-hidden="true"></span>
+            02 / APPAREL · OBJECTS
+          </motion.div>
 
-      {/* ── Bottom gradient scrim so text is legible ── */}
-      <div className="hb-scrim" aria-hidden="true" />
+          <motion.h2 className="display h-sec hb-massive" variants={prefersReduced ? REDUCED : ITEM}>
+            HB
+          </motion.h2>
 
-      {/* ── Content overlay — bottom left ── */}
-      <motion.div
-        className="hb-content"
-        variants={prefersReduced ? REDUCED : STAGGER}
-        initial="hidden"
-        whileInView="visible"
-        viewport={{ once: true, margin: '-12%' }}
-      >
-        <motion.span className="venture-panel__badge venture-panel__badge--vermillion" variants={prefersReduced ? REDUCED : ITEM}>
-          02 / APPAREL · OBJECTS
-        </motion.span>
+          <motion.p className="display hb-tag" variants={prefersReduced ? REDUCED : ITEM}>
+            You can't buy it.
+          </motion.p>
 
-        <motion.h2 className="hb-headline" variants={prefersReduced ? REDUCED : ITEM}>
-          HB
-        </motion.h2>
+          <motion.div className="hb-rule" variants={prefersReduced ? REDUCED : ITEM} />
 
-        <motion.p className="hb-tagline" variants={prefersReduced ? REDUCED : ITEM}>
-          You can't buy it.
-        </motion.p>
+          <motion.p className="eyebrow hb-sub" variants={prefersReduced ? REDUCED : ITEM}>
+            Haiybellbottom
+          </motion.p>
 
-        <motion.p className="hb-subheading" variants={prefersReduced ? REDUCED : ITEM}>
-          Haiybellbottom
-        </motion.p>
+          <motion.p className="body-sm hb-desc" variants={prefersReduced ? REDUCED : ITEM}>
+            A study in warmth, utility, and considered everyday design.
+          </motion.p>
 
-        <motion.p className="venture-panel__body hb-body" variants={prefersReduced ? REDUCED : ITEM}>
-          A study in warmth, utility, and considered everyday design.
-        </motion.p>
+          <motion.div className="hb-nav-row" variants={prefersReduced ? REDUCED : ITEM}>
+            <div className="hb-dots" aria-label="Gallery navigation">
+              {HB_IMAGES.map((_, i) => (
+                <button
+                  key={i}
+                  className={`hb-dot${i === activeIndex ? ' on' : ''}`}
+                  onClick={() => setActiveIndex(i)}
+                  aria-label={`Show image ${i + 1}`}
+                />
+              ))}
+            </div>
+          </motion.div>
 
-        <motion.div className="hb-footer-row" variants={prefersReduced ? REDUCED : ITEM}>
-          <a
-            href="#"
-            className="venture-panel__cta venture-panel__cta--primary"
-            aria-label="Explore Haiybellbottom collection — coming soon"
-            onClick={(e) => e.preventDefault()}
-          >
-            <span>VIEW COLLECTION</span>
-            <span className="cta-arrow" aria-hidden="true">→</span>
-          </a>
-          <p className="venture-panel__coming-soon">Collection launching soon</p>
+          <motion.div className="hb-cta-row" variants={prefersReduced ? REDUCED : ITEM}>
+            <a
+              href="#"
+              className="arrowlink"
+              aria-label="Explore Haiybellbottom collection — coming soon"
+              onClick={(e) => e.preventDefault()}
+            >
+              <div className="ar">
+                <svg viewBox="0 0 11 11" fill="none">
+                  <path d="M1 10L10 1M10 1H3M10 1V8" stroke="currentColor" strokeWidth="1.5"/>
+                </svg>
+              </div>
+              <span>VIEW COLLECTION</span>
+            </a>
+            <span className="eyebrow hb-soon">Collection launching soon</span>
+          </motion.div>
         </motion.div>
-      </motion.div>
+
+        {/* ── Right Column: The Framed Gallery ── */}
+        <div className="hb-editorial-gallery">
+          <div className="hb-gallery-frame">
+            <AnimatePresence initial={false}>
+              <motion.img
+                key={activeIndex}
+                src={HB_IMAGES[activeIndex].src}
+                alt=""
+                className="hb-gallery-img"
+                initial={{ opacity: 0, scale: 1.05 }}
+                animate={{ opacity: 1, scale: 1 }}
+                exit={{ opacity: 0 }}
+                transition={{ duration: prefersReduced ? 0.1 : 1.4, ease: [0.22, 0.61, 0.36, 1] }}
+                draggable={false}
+              />
+            </AnimatePresence>
+          </div>
+        </div>
+
+      </div>
     </section>
   )
 }

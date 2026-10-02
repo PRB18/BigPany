@@ -1,168 +1,208 @@
 /* =============================================================
-   HaiybellbottomPanel.css — Cinematic fashion-editorial layout
-   Jacket fills 100% of the panel. Text anchored bottom-left.
+   HaiybellbottomPanel.css — Premium Editorial Split
    ============================================================= */
 
-/* ── Panel shell ─────────────────────────────────────────────── */
-.hb-panel {
+.hb-editorial-sec {
   position: relative;
-  min-height: 100vh;
   width: 100%;
-  overflow: hidden;
+  min-height: 100svh;
+  background: #cfd0cd; /* exact studio backdrop color */
   display: flex;
-  flex-direction: column;
-  justify-content: flex-end;
-  padding: var(--space-12) var(--section-pad-x);
-  background: #0b0a09;
+  align-items: center;
+  overflow: hidden;
   border-bottom: var(--hairline);
 }
 
-/* ── Jacket stage — covers the whole panel ───────────────────── */
-.hb-jacket-stage {
-  position: absolute;
-  inset: 0;
-  z-index: 0;
-  overflow: hidden;
-}
-
-.hb-jacket-img {
-  position: absolute;
-  inset: 0;
+/* ── The Grid ────────────────────────────────────────────────── */
+.hb-editorial-grid {
   width: 100%;
-  height: 100%;
-  object-fit: cover;
-  object-position: center 30%;
-  will-change: transform;
-  transform-origin: center center;
-  /* De-saturate slightly for editorial tone */
-  filter: brightness(0.75) contrast(1.05);
+  max-width: var(--max-width);
+  margin: 0 auto;
+  padding: var(--section-pad-y) var(--pad);
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  gap: clamp(40px, 8vw, 120px);
+  align-items: center;
 }
 
-/* Warm gold rim-light glow at top-right — premium studio feel */
-.hb-jacket-glow {
-  position: absolute;
-  inset: 0;
-  background:
-    radial-gradient(ellipse 60% 55% at 72% 20%, rgba(229,198,139,0.12) 0%, transparent 65%),
-    radial-gradient(ellipse 40% 40% at 28% 75%, rgba(229,198,139,0.06) 0%, transparent 60%);
-  pointer-events: none;
-}
-
-/* ── Gradient scrim — legibility for text ────────────────────── */
-.hb-scrim {
-  position: absolute;
-  inset: 0;
-  z-index: 1;
-  pointer-events: none;
-  background:
-    /* Strong bottom-to-top dark sweep for text area */
-    linear-gradient(
-      to top,
-      rgba(11, 10, 9, 0.97) 0%,
-      rgba(11, 10, 9, 0.82) 22%,
-      rgba(11, 10, 9, 0.35) 50%,
-      rgba(11, 10, 9, 0.05) 75%,
-      transparent 100%
-    ),
-    /* Subtle left vignette */
-    linear-gradient(
-      to right,
-      rgba(11, 10, 9, 0.55) 0%,
-      transparent 45%
-    );
-}
-
-/* ── Content overlay ─────────────────────────────────────────── */
-.hb-content {
-  position: relative;
-  z-index: 3;
-  max-width: 580px;
+/* ── Left Column: Content ────────────────────────────────────── */
+.hb-editorial-content {
   display: flex;
   flex-direction: column;
-  gap: var(--space-2);
+  z-index: 2;
 }
 
-/* ── Headline — massive Fraunces ─────────────────────────────── */
-.hb-headline {
-  font-family: var(--font-display);
-  font-size: clamp(5rem, 14vw, 13rem);
-  font-weight: 800;
-  line-height: 0.85;
-  letter-spacing: -0.04em;
-  color: var(--paper);
-  font-optical-sizing: auto;
-  margin: 0;
+.hb-editorial-content .eyebrow {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: var(--space-6);
 }
 
-/* ── Tagline — italic Fraunces, gold tint ────────────────────── */
-.hb-tagline {
+.hb-editorial-content .eyebrow .dot {
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: var(--ink);
+  box-shadow: none;
+}
+
+.hb-massive {
+  font-size: clamp(6rem, 16vw, 15rem);
+  line-height: 0.8;
+  letter-spacing: -0.05em;
+  color: var(--ink);
+  margin-bottom: var(--space-2);
+}
+
+.hb-tag {
   font-family: var(--font-display);
   font-style: italic;
-  font-size: clamp(1.4rem, 3.5vw, 3rem);
+  font-size: clamp(1.8rem, 4vw, 3.5rem);
   font-weight: 300;
-  line-height: 1;
-  letter-spacing: -0.01em;
-  color: #e5c68a;
-  opacity: 0.9;
-  margin: 0;
-  font-optical-sizing: auto;
-}
-
-/* ── Subheading ──────────────────────────────────────────────── */
-.hb-subheading {
-  font-family: var(--font-mono);
-  font-size: var(--text-small);
-  letter-spacing: 0.22em;
-  text-transform: uppercase;
-  color: #e5c68a;
+  line-height: 1.1;
+  color: var(--ink-2);
   opacity: 0.8;
-  margin: 0;
-  padding-bottom: var(--space-2);
-  border-bottom: 1px solid rgba(229, 198, 139, 0.18);
+  margin-bottom: var(--space-6);
 }
 
-/* ── Body copy ───────────────────────────────────────────────── */
-.hb-body {
-  margin-bottom: 0 !important;
-  border-left: 2px solid rgba(229, 198, 139, 0.5) !important;
-  color: rgba(229, 226, 224, 0.65) !important;
-  font-size: 0.8125rem !important;
+.hb-rule {
+  width: 100%;
+  max-width: 240px;
+  height: 1px;
+  background: rgba(5,7,10, 0.15); /* dark rule */
+  margin-bottom: var(--space-6);
 }
 
-/* ── CTA + coming-soon row ───────────────────────────────────── */
-.hb-footer-row {
+.hb-sub {
+  color: var(--ink);
+  font-weight: 500;
+  margin-bottom: var(--space-2);
+  letter-spacing: 0.25em;
+}
+
+.hb-desc {
+  max-width: 32ch;
+  color: var(--ink-2);
+  margin-bottom: var(--space-6);
+}
+
+/* ── Nav Dots ────────────────────────────────────────────────── */
+.hb-nav-row {
+  margin-bottom: var(--space-8);
+}
+
+.hb-dots {
+  display: flex;
+  gap: 8px;
+}
+
+.hb-dot {
+  width: 24px;
+  height: 1px;
+  background: rgba(5,7,10, 0.15);
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  transition: width .4s var(--ease-out-expo), background .4s;
+}
+
+.hb-dot.on {
+  width: 48px;
+  background: var(--ink);
+}
+
+.hb-dot:hover:not(.on) {
+  background: rgba(5,7,10, 0.4);
+}
+
+/* ── CTA Row ─────────────────────────────────────────────────── */
+.hb-cta-row {
   display: flex;
   align-items: center;
   gap: var(--space-4);
   flex-wrap: wrap;
-  padding-top: var(--space-2);
 }
 
-/* ── Mobile ──────────────────────────────────────────────────── */
+/* Invert the global arrowlink for this light section */
+.hb-cta-row .arrowlink {
+  color: var(--ink);
+}
+.hb-cta-row .arrowlink .ar {
+  border-color: rgba(5,7,10, 0.2);
+}
+.hb-cta-row .arrowlink .ar svg path {
+  stroke: var(--ink);
+}
+.hb-cta-row .arrowlink:hover .ar {
+  background: var(--ink);
+  border-color: var(--ink);
+}
+.hb-cta-row .arrowlink:hover .ar svg path {
+  stroke: var(--bone);
+}
+
+.hb-soon {
+  color: var(--muted);
+}
+
+/* ── Right Column: Framed Gallery ────────────────────────────── */
+.hb-editorial-gallery {
+  position: relative;
+  width: 100%;
+  display: flex;
+  justify-content: flex-end;
+}
+
+.hb-gallery-frame {
+  position: relative;
+  width: 100%;
+  max-width: 640px; /* Made it larger for more impact */
+  aspect-ratio: 4/5;
+  background: transparent;
+  overflow: hidden;
+  /* Feather the edges so the image melts seamlessly into the background */
+  -webkit-mask-image: radial-gradient(ellipse 80% 90% at center, rgba(0,0,0,1) 40%, rgba(0,0,0,0) 95%);
+  mask-image: radial-gradient(ellipse 80% 90% at center, rgba(0,0,0,1) 40%, rgba(0,0,0,0) 95%);
+}
+
+.hb-gallery-img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover; /* Must be cover so it hits the edges of the mask */
+  object-position: center;
+  display: block;
+  filter: contrast(1.02);
+  will-change: transform, opacity;
+  max-width: none;
+  z-index: 1;
+}
+
+/* ── Responsive ──────────────────────────────────────────────── */
+@media (max-width: 1080px) {
+  .hb-editorial-grid {
+    grid-template-columns: 1fr;
+    gap: var(--space-8);
+  }
+  
+  .hb-editorial-gallery {
+    justify-content: center;
+  }
+  
+  .hb-gallery-frame {
+    max-width: 100%;
+    aspect-ratio: 16/10;
+  }
+}
+
 @media (max-width: 768px) {
-  .hb-panel {
-    min-height: 85vh;
-    padding: var(--space-8) var(--section-pad-x);
+  .hb-editorial-sec {
+    min-height: auto;
   }
-
-  .hb-headline {
-    font-size: clamp(4rem, 20vw, 7rem);
-  }
-
-  .hb-jacket-img {
-    object-position: center 20%;
-  }
-
-  .hb-footer-row {
-    flex-direction: column;
-    align-items: flex-start;
-    gap: var(--space-2);
-  }
-}
-
-/* ── Reduced motion ──────────────────────────────────────────── */
-@media (prefers-reduced-motion: reduce) {
-  .hb-jacket-img {
-    will-change: auto;
+  
+  .hb-gallery-frame {
+    aspect-ratio: 4/5;
   }
 }

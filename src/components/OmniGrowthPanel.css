@@ -1,0 +1,50 @@
+/* =============================================================
+   OmniGrowthPanel.css — scroll progress bar + scene label
+   ============================================================= */
+
+/* Scroll progress track — full width, bottom of panel */
+.og-progress-track {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: rgba(122, 154, 110, 0.15);
+  z-index: 10;
+  overflow: hidden;
+}
+
+.og-progress-bar {
+  height: 100%;
+  width: 100%;
+  transform: scaleX(0);
+  transform-origin: left center;
+  will-change: transform;
+}
+
+.og-progress-bar--moss {
+  background: var(--moss-tint, #7a9a6e);
+}
+
+/* Scene label — bottom right, faint mono */
+.og-scene-label {
+  position: absolute;
+  bottom: 1.5rem;
+  right: var(--section-pad-x, 2rem);
+  z-index: 10;
+  font-family: var(--font-mono);
+  font-size: 0.625rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: rgba(122, 154, 110, 0.5);
+}
+
+/* Ensure bg ref div gets will-change for GPU */
+.og-panel .venture-panel__bg {
+  will-change: transform;
+}
+
+/* Ensure the motif wrap is targeted for GSAP */
+.og-motif-wrap {
+  will-change: transform;
+}

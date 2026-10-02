@@ -1,62 +1,76 @@
 /* =============================================================
-   BIGPANY DESIGN TOKENS
-   Updated to match Stitch design exactly.
+   BIGPANY DESIGN TOKENS — Kage-inspired
+   Ported from threeui.com/landing-pages/kage.html
    ============================================================= */
 
 :root {
-  /* ── Color Palette ─────────────────────────────────────── */
-  --bg-base:            #131312;  /* Stitch surface-dim */
-  --paper:              #e5e2e0;  /* Stitch on-surface */
-  --primary:            #ffb4a6;  /* Stitch peach CTA */
-  --on-primary:         #660800;  /* Dark text on primary */
+  /* ── Kage Palette ──────────────────────────────────────── */
+  --ink:              #05070a;       /* page black */
+  --ink-2:            #0a0e12;       /* raised black */
+  --bone:             #dfe7e0;       /* pale sage white */
+  --bone-dim:         #aab4ad;
+  --muted:            #78837c;
+  --line:             rgba(223,231,224,.13);
+  --line-soft:        rgba(223,231,224,.07);
+  --vermilion:        #e0231c;
+  --ember:            #ff5a3c;
+  --gold:             #c9a24a;
+
+  /* ── Bigpany brand aliases (keep existing vars working) ── */
+  --bg-base:            var(--ink);
+  --paper:              var(--bone);
+  --primary:            var(--vermilion);
+  --on-primary:         var(--bone);
   --moss:               #3F5F3C;
   --moss-tint:          #7A9A6E;
   --moss-dark:          #111A10;
-  --vermillion:         #C9432D;
-  --vermillion-tint:    #E1785F;
+  --vermillion:         var(--vermilion);
+  --vermillion-tint:    var(--ember);
   --vermillion-dark:    #1E0B08;
-  --grey:               #8A8578;
-  --surface-container:  #20201e;  /* Card hover bg */
+  --grey:               var(--muted);
+  --surface-container:  #0f1215;
 
-  /* ── Typography ────────────────────────────────────────── */
-  --font-display: 'Fraunces', Georgia, serif;
-  --font-syne:    'Syne', system-ui, sans-serif;
-  --font-royal:   'Cinzel', serif;
-  --font-body:    'JetBrains Mono', 'Courier New', monospace;  /* Stitch: mono body */
-  --font-mono:    'JetBrains Mono', 'Courier New', monospace;
+  /* ── Typography — Kage uses Onest (light, 300) ─────────── */
+  --font-display: 'Onest', system-ui, -apple-system, 'Helvetica Neue', sans-serif;
+  --font-syne:    'Onest', system-ui, sans-serif;
+  --font-royal:   'Onest', sans-serif;
+  --font-body:    'Onest', system-ui, -apple-system, 'Helvetica Neue', sans-serif;
+  --font-mono:    'Onest', 'Courier New', monospace;
+
+  /* ── Kage easing ───────────────────────────────────────── */
+  --ease:           cubic-bezier(.22, .61, .36, 1);
+  --ease-out-expo:  cubic-bezier(.16, 1, .3, 1);
+  --ease-standard:  cubic-bezier(.4, 0, .2, 1);
+  --ease-in-out:    cubic-bezier(.65, 0, .35, 1);
 
   /* ── Type Scale ─────────────────────────────────────────── */
-  --text-hero:     clamp(3.5rem, 10vw, 9rem);
-  --text-hero-sub: clamp(1.25rem, 3.5vw, 3rem);
-  --text-h2:       clamp(2rem, 5vw, 4.5rem);
-  --text-h3:       clamp(1.5rem, 3vw, 2.5rem);
-  --text-body:     clamp(0.9rem, 1.1vw, 1.125rem);
-  --text-small:    0.875rem;
-  --text-xs:       0.75rem;
-  --text-mono:     0.6875rem;
+  --text-hero:     clamp(26px, 3.05vw, 46px);
+  --text-hero-sub: clamp(15px, 1.16vw, 19px);
+  --text-h2:       clamp(30px, 4vw, 60px);
+  --text-h3:       clamp(16px, 1.5vw, 23px);
+  --text-body:     clamp(14px, 1.02vw, 17px);
+  --text-small:    0.8125rem;
+  --text-xs:       10px;
+  --text-mono:     11px;
 
-  /* ── Spacing (8px grid) ─────────────────────────────────── */
-  --space-1:  0.5rem;    /*  8px */
-  --space-2:  1rem;      /* 16px */
-  --space-3:  1.5rem;    /* 24px */
-  --space-4:  2rem;      /* 32px */
-  --space-6:  3rem;      /* 48px */
-  --space-8:  4rem;      /* 64px */
-  --space-12: 6rem;      /* 96px */
-  --space-16: 8rem;      /* 128px */
-  --space-24: 12rem;     /* 192px */
+  /* ── Spacing (Kage uses clamp pad) ─────────────────────── */
+  --pad:            clamp(20px, 3.4vw, 56px);
+  --space-1:        0.5rem;
+  --space-2:        1rem;
+  --space-3:        1.5rem;
+  --space-4:        2rem;
+  --space-6:        3rem;
+  --space-8:        4rem;
+  --space-12:       6rem;
+  --space-16:       8rem;
+  --section-pad-x:  var(--pad);
+  --section-pad-y:  clamp(88px, 15vh, 190px);
 
   /* ── Borders ─────────────────────────────────────────────── */
-  --hairline: 1px solid rgba(138, 133, 120, 0.25);
-
-  /* ── Easing ─────────────────────────────────────────────── */
-  --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
-  --ease-standard: cubic-bezier(0.4, 0, 0.2, 1);
-  --ease-in-out:   cubic-bezier(0.65, 0, 0.35, 1);
+  --hairline:   1px solid var(--line-soft);
 
   /* ── Layout ──────────────────────────────────────────────── */
-  --max-width: 1440px;
-  --nav-height: 4.5rem;
-  --section-pad-x: clamp(1.25rem, 4vw, 4rem);
-  --section-pad-y: clamp(5rem, 10vw, 10rem);
+  --max-width:   1440px;
+  --nav-height:  84px;
+  --nav-h:       84px;
 }
