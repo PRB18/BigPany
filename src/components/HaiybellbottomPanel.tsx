@@ -7,6 +7,7 @@ import { useReducedMotion } from '../hooks/useReducedMotion'
 import {
   HB_IMAGES,
   HB_INTERVAL_MS,
+  HB_TAGLINE,
   HB_TARGET_URL,
   getNextSlideIndex,
   formatSlideFraction,
@@ -77,6 +78,15 @@ export default function HaiybellbottomPanel() {
       className="hb-editorial-sec"
       aria-label="Haiybellbottom — heritage luxury textile venture"
     >
+      {/* ── Full-Section Clickable Overlay Link (Opens https://hairybellbottom.vercel.app/ in new tab) ── */}
+      <a
+        href={HB_TARGET_URL}
+        target="_blank"
+        rel="noopener noreferrer"
+        className="hb-section-link-overlay"
+        aria-label="Open Haiybellbottom website (opens in new tab)"
+      />
+
       {/* ── Subtle Parallax Ambient Backdrop ── */}
       <motion.div
         className="hb-parallax-bg"
@@ -111,7 +121,7 @@ export default function HaiybellbottomPanel() {
           </motion.h2>
 
           <motion.p className="display hb-tag" variants={prefersReduced ? REDUCED : ITEM}>
-            You can&apos;t buy it.
+            {HB_TAGLINE}
           </motion.p>
 
           <motion.div className="hb-rule" variants={prefersReduced ? REDUCED : ITEM} />

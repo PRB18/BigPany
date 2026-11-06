@@ -3,14 +3,16 @@ import assert from 'node:assert/strict'
 import {
   HB_IMAGES,
   HB_INTERVAL_MS,
+  HB_TAGLINE,
   HB_TARGET_URL,
   getNextSlideIndex,
   getPrevSlideIndex,
   formatSlideFraction,
 } from './haiybellbottom'
 
-test('Haiybellbottom target URL and slideshow progression speed match specification', () => {
-  assert.equal(HB_TARGET_URL, 'https://vercel.app')
+test('Haiybellbottom target URL, tagline, and slideshow progression speed match specification', () => {
+  assert.equal(HB_TARGET_URL, 'https://hairybellbottom.vercel.app/')
+  assert.equal(HB_TAGLINE, 'For the fathoming')
   assert.equal(HB_INTERVAL_MS, 5000)
   assert.equal(HB_IMAGES.length, 3)
   assert.equal(HB_IMAGES[0].src, '/assets/aistudio/Ponduru_Khadi_saree__d6c225d3.jpg')

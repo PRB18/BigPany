@@ -10,7 +10,9 @@ export interface HaiybellbottomSlide {
   detail: string
 }
 
-export const HB_TARGET_URL = 'https://vercel.app'
+export const HB_TARGET_URL = 'https://hairybellbottom.vercel.app/'
+
+export const HB_TAGLINE = 'For the fathoming'
 
 export const HB_INTERVAL_MS = 5000
 

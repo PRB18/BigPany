@@ -13,6 +13,16 @@
   overflow: hidden;
   border-bottom: 1px solid rgba(201, 162, 74, 0.16);
   isolation: isolate;
+  cursor: pointer;
+}
+
+/* Full-section stretched link so clicking anywhere in the section opens https://hairybellbottom.vercel.app/ */
+.hb-section-link-overlay {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  display: block;
+  cursor: pointer;
 }
 
 /* ── Subtle Parallax Ambient Layer (GPU-Composited Only) ────── */
@@ -40,22 +50,30 @@
 /* ── The Grid ────────────────────────────────────────────────── */
 .hb-editorial-grid {
   position: relative;
-  z-index: 2;
+  z-index: 3;
   width: 100%;
-  max-width: var(--max-width, 1440px);
+  max-width: 1280px;
   margin: 0 auto;
-  padding: clamp(6rem, 13vh, 10.5rem) var(--pad, clamp(20px, 3.4vw, 56px));
+  padding: clamp(6.5rem, 14vh, 11rem) var(--pad, clamp(24px, 4vw, 64px));
   display: grid;
-  grid-template-columns: minmax(0, 1fr) minmax(0, 1.05fr);
-  gap: clamp(3rem, 7vw, 7.5rem);
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  gap: clamp(4rem, 9vw, 9rem);
   align-items: center;
+  pointer-events: none;
 }
 
 /* ── Left Column: Content ────────────────────────────────────── */
 .hb-editorial-content {
   display: flex;
   flex-direction: column;
-  z-index: 2;
+  z-index: 3;
+}
+
+.hb-title-link,
+.hb-dots,
+.hb-cta-link,
+.hb-gallery-pedestal {
+  pointer-events: auto;
 }
 
 .hb-kicker {
@@ -69,8 +87,8 @@
 }
 
 .hb-massive {
-  font-size: clamp(5.25rem, 13.5vw, 12.5rem);
-  line-height: 0.82;
+  font-size: clamp(4.5rem, 11vw, 9.75rem);
+  line-height: 0.84;
   letter-spacing: -0.045em;
   color: #f4efe6;
   margin-bottom: var(--space-2, 1rem);
@@ -92,9 +110,10 @@
 .hb-tag {
   font-family: var(--font-display);
   font-style: italic;
-  font-size: clamp(1.65rem, 3.2vw, 2.85rem);
+  font-size: clamp(1.35rem, 2.5vw, 2.25rem);
   font-weight: 300;
-  line-height: 1.15;
+  line-height: 1.2;
+  letter-spacing: 0.02em;
   color: rgba(244, 239, 230, 0.82);
   margin-bottom: var(--space-6, 3rem);
   text-shadow: none;
@@ -102,7 +121,7 @@
 
 .hb-rule {
   width: 100%;
-  max-width: 280px;
+  max-width: 240px;
   height: 1px;
   background: linear-gradient(90deg, rgba(201, 162, 74, 0.55) 0%, rgba(201, 162, 74, 0.08) 100%);
   margin-bottom: var(--space-6, 3rem);
@@ -117,10 +136,10 @@
 }
 
 .hb-desc {
-  max-width: 40ch;
-  font-size: clamp(0.9375rem, 1.05vw, 1.0625rem);
+  max-width: 38ch;
+  font-size: clamp(0.875rem, 0.98vw, 1rem);
   line-height: 1.75;
-  color: rgba(244, 239, 230, 0.72);
+  color: rgba(244, 239, 230, 0.68);
   margin-bottom: var(--space-6, 3rem);
   text-shadow: none;
 }
@@ -130,18 +149,18 @@
   display: flex;
   flex-direction: column;
   gap: 0.35rem;
-  padding: 1rem 0;
+  padding: 0.9rem 0;
   margin-bottom: var(--space-4, 2rem);
-  border-top: 1px solid rgba(244, 239, 230, 0.09);
-  border-bottom: 1px solid rgba(244, 239, 230, 0.09);
-  max-width: 420px;
+  border-top: 1px solid rgba(244, 239, 230, 0.08);
+  border-bottom: 1px solid rgba(244, 239, 230, 0.08);
+  max-width: 380px;
 }
 
 .hb-slide-meta__header {
   display: flex;
   align-items: center;
   gap: 0.65rem;
-  font-size: 0.75rem;
+  font-size: 0.72rem;
   letter-spacing: 0.18em;
   text-transform: uppercase;
 }
@@ -163,9 +182,9 @@
 
 .hb-slide-meta__detail {
   margin: 0;
-  font-size: 0.8125rem;
+  font-size: 0.78rem;
   letter-spacing: 0.04em;
-  color: rgba(244, 239, 230, 0.56);
+  color: rgba(244, 239, 230, 0.54);
 }
 
 /* ── Nav Dots (Touch-friendly hit targets) ───────────────────── */
@@ -184,7 +203,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 44px;
+  width: 40px;
   height: 32px;
   background: transparent;
   border: none;
@@ -194,13 +213,13 @@
 }
 
 .hb-dot.on {
-  width: 68px;
+  width: 64px;
 }
 
 .hb-dot__track {
   display: block;
   width: 100%;
-  height: 2px;
+  height: 1.5px;
   background: rgba(244, 239, 230, 0.18);
   overflow: hidden;
   position: relative;
@@ -235,9 +254,9 @@
 .hb-cta-row .hb-cta-link {
   margin-top: 0;
   color: #f4efe6;
-  padding: 0.65rem 1.35rem 0.65rem 0.65rem;
-  border: 1px solid rgba(201, 162, 74, 0.32);
-  background: rgba(201, 162, 74, 0.05);
+  padding: 0.6rem 1.25rem 0.6rem 0.6rem;
+  border: 1px solid rgba(201, 162, 74, 0.3);
+  background: rgba(201, 162, 74, 0.04);
   transition:
     background-color 0.35s var(--ease-out-expo),
     border-color 0.35s var(--ease-out-expo),
@@ -245,8 +264,8 @@
 }
 
 .hb-cta-row .hb-cta-link .ar {
-  border-color: rgba(201, 162, 74, 0.4);
-  background: rgba(201, 162, 74, 0.1);
+  border-color: rgba(201, 162, 74, 0.38);
+  background: rgba(201, 162, 74, 0.08);
 }
 
 .hb-cta-row .hb-cta-link .ar svg path {
@@ -256,7 +275,7 @@
 
 .hb-cta-row .hb-cta-link:hover,
 .hb-cta-row .hb-cta-link:focus-visible {
-  background: rgba(201, 162, 74, 0.14);
+  background: rgba(201, 162, 74, 0.12);
   border-color: #e5c68a;
   transform: translateY(-2px);
 }
@@ -273,26 +292,26 @@
 }
 
 .hb-soon {
-  color: rgba(244, 239, 230, 0.48);
+  color: rgba(244, 239, 230, 0.45);
   text-shadow: none;
 }
 
-/* ── Right Column: Opulent Framed Gallery ────────────────────── */
+/* ── Right Column: Minimalist Opulent Framed Gallery ─────────── */
 .hb-editorial-gallery {
   position: relative;
   width: 100%;
   display: flex;
-  justify-content: flex-end;
+  justify-content: center;
   will-change: transform;
 }
 
 .hb-gallery-pedestal {
   display: block;
   width: 100%;
-  max-width: 580px;
-  padding: clamp(10px, 1.5vw, 18px);
-  background: rgba(255, 255, 255, 0.015);
-  border: 1px solid rgba(201, 162, 74, 0.24);
+  max-width: 390px;
+  padding: 14px;
+  background: rgba(255, 255, 255, 0.012);
+  border: 1px solid rgba(201, 162, 74, 0.22);
   text-decoration: none;
   color: inherit;
   transition: border-color 0.45s var(--ease-out-expo), background-color 0.45s var(--ease-out-expo);
@@ -300,8 +319,8 @@
 
 .hb-gallery-pedestal:hover,
 .hb-gallery-pedestal:focus-visible {
-  border-color: rgba(229, 198, 138, 0.58);
-  background: rgba(201, 162, 74, 0.04);
+  border-color: rgba(229, 198, 138, 0.52);
+  background: rgba(201, 162, 74, 0.035);
 }
 
 .hb-gallery-frame {
@@ -336,8 +355,8 @@
 
 .hb-gallery-inner-border {
   position: absolute;
-  inset: 14px;
-  border: 1px solid rgba(244, 239, 230, 0.16);
+  inset: 12px;
+  border: 1px solid rgba(244, 239, 230, 0.14);
   pointer-events: none;
   z-index: 2;
   transition: border-color 0.45s var(--ease-out-expo);
@@ -345,7 +364,7 @@
 
 .hb-gallery-pedestal:hover .hb-gallery-inner-border,
 .hb-gallery-pedestal:focus-visible .hb-gallery-inner-border {
-  border-color: rgba(229, 198, 138, 0.42);
+  border-color: rgba(229, 198, 138, 0.38);
 }
 
 .hb-gallery-overlay {
@@ -357,22 +376,22 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 2.25rem 1.75rem 1.4rem;
+  padding: 1.75rem 1.35rem 1.15rem;
   background: linear-gradient(to top, rgba(9, 8, 7, 0.82) 0%, rgba(9, 8, 7, 0.32) 55%, transparent 100%);
   pointer-events: none;
 }
 
 .hb-gallery-overlay__code {
-  font-size: 0.6875rem;
+  font-size: 0.625rem;
   font-weight: 500;
   letter-spacing: 0.24em;
   text-transform: uppercase;
-  color: rgba(244, 239, 230, 0.78);
+  color: rgba(244, 239, 230, 0.76);
   font-variant-numeric: tabular-nums;
 }
 
 .hb-gallery-overlay__action {
-  font-size: 0.6875rem;
+  font-size: 0.625rem;
   font-weight: 500;
   letter-spacing: 0.2em;
   text-transform: uppercase;
@@ -389,8 +408,8 @@
 @media (max-width: 1080px) {
   .hb-editorial-grid {
     grid-template-columns: 1fr;
-    gap: clamp(2.5rem, 6vw, 4rem);
-    padding: clamp(4.5rem, 10vh, 7rem) var(--pad, 24px);
+    gap: clamp(3rem, 6vw, 4.5rem);
+    padding: clamp(5rem, 10vh, 7.5rem) var(--pad, 24px);
   }
 
   .hb-editorial-gallery {
@@ -398,7 +417,7 @@
   }
 
   .hb-gallery-pedestal {
-    max-width: 560px;
+    max-width: 360px;
   }
 
   .hb-slide-meta {
@@ -417,11 +436,11 @@
   }
 
   .hb-massive {
-    font-size: clamp(4.25rem, 20vw, 6.5rem);
+    font-size: clamp(3.75rem, 17vw, 5.75rem);
   }
 
   .hb-tag {
-    font-size: clamp(1.4rem, 6vw, 2rem);
+    font-size: clamp(1.25rem, 5vw, 1.75rem);
     margin-bottom: var(--space-4, 2rem);
   }
 
@@ -434,8 +453,12 @@
     margin-bottom: var(--space-4, 2rem);
   }
 
+  .hb-editorial-gallery {
+    justify-content: center;
+  }
+
   .hb-gallery-pedestal {
-    max-width: 100%;
+    max-width: 310px;
     padding: 10px;
   }
 
@@ -448,7 +471,7 @@
   }
 
   .hb-gallery-overlay {
-    padding: 1.5rem 1.25rem 1rem;
+    padding: 1.25rem 1rem 0.9rem;
   }
 }
 
@@ -466,5 +489,9 @@
 
   .hb-soon {
     text-align: center;
+  }
+
+  .hb-gallery-pedestal {
+    max-width: 280px;
   }
 }
