@@ -263,7 +263,7 @@ h1, h2, h3 { font-weight: 400; margin: 0; letter-spacing: -.005em; }
   font-size: 10px;
   letter-spacing: .14em;
   text-transform: uppercase;
-  transform: translateY(-120%);
+  transform: translateY(-250%);
   transition: transform .2s var(--ease-out-expo);
   border-radius: 2px;
 }
