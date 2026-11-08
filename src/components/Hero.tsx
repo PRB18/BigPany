@@ -55,16 +55,6 @@ export default function Hero() {
         <div className="hero__orb hero__orb--3" />
       </div>
 
-      {/* Eyebrow label */}
-      <motion.p
-        className="hero__eyebrow"
-        variants={TAG_VARIANTS}
-        initial="hidden"
-        animate="visible"
-      >
-        EST. 2021 &nbsp;/&nbsp; INDIA
-      </motion.p>
-
       {/* Centered headline — staggered per line */}
       <div className="hero__content">
         <h1 className="hero__headline">

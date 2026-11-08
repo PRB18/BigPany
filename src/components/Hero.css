@@ -102,19 +102,6 @@
   100% { opacity: 0; transform: translate(0, 0) scale(1); }
 }
 
-/* ── Eyebrow label — top-right ─────────────────────────────── */
-.hero__eyebrow {
-  position: absolute;
-  top: calc(var(--nav-height) + var(--space-4));
-  right: var(--section-pad-x);
-  font-family: var(--font-mono);
-  font-size: var(--text-mono);
-  letter-spacing: 0.16em;
-  text-transform: uppercase;
-  color: rgba(229, 226, 224, 0.45);
-  z-index: 3;
-}
-
 /* ── Content wrapper ────────────────────────────────────────── */
 .hero__content {
   position: relative;
@@ -242,8 +229,6 @@
     font-size: clamp(2.2rem, 13vw, 3.5rem);
     line-height: 0.95;
   }
-
-  .hero__eyebrow { display: none; }
 
   .hero__scroll-cue { display: none; }
 

@@ -1,7 +1,7 @@
 /* =============================================================
    Nav.tsx — Kage-style navigation
    Frosted glass blur on scroll (stuck), hide on scroll down,
-   show on scroll up. Bigpany wordmark + links + ENQUIRE CTA.
+   show on scroll up. Bigpany wordmark + links.
    ============================================================= */
 import { useEffect, useRef, useState } from 'react'
 import './Nav.css'
@@ -72,20 +72,6 @@ export default function Nav() {
           </li>
         ))}
       </ul>
-
-      {/* ENQUIRE CTA — Kage pill style */}
-      <a
-        href="#team"
-        className="kage-nav__cta"
-        onClick={(e) => handleNavClick(e, '#team')}
-        aria-label="Enquire — scroll to team"
-      >
-        <i aria-hidden="true" />
-        <span>ENQUIRE</span>
-        <svg width="11" height="11" viewBox="0 0 11 11" fill="none" aria-hidden="true">
-          <path d="M1 10L10 1M10 1H3M10 1V8" stroke="currentColor" strokeWidth="1.5"/>
-        </svg>
-      </a>
 
       {/* Mobile burger */}
       <button className="kage-burger" aria-label="Toggle menu" aria-expanded="false">

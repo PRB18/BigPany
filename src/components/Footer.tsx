@@ -46,26 +46,6 @@ export default function Footer() {
                 Team
               </a>
             </li>
-            <li>
-              <a href="#" className="footer__nav-link" onClick={(e) => e.preventDefault()}>
-                Privacy Policy
-              </a>
-            </li>
-            <li>
-              <a href="#" className="footer__nav-link" onClick={(e) => e.preventDefault()}>
-                Terms of Service
-              </a>
-            </li>
-            <li>
-              <a href="#" className="footer__nav-link" onClick={(e) => e.preventDefault()}>
-                Institutional
-              </a>
-            </li>
-            <li>
-              <a href="#" className="footer__nav-link" onClick={(e) => e.preventDefault()}>
-                Press
-              </a>
-            </li>
           </ul>
         </nav>
 

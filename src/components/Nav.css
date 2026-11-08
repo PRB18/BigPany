@@ -128,41 +128,6 @@
 .kage-nav__link:hover span         { transform: translate3d(0,-100%,0); }
 .kage-nav__link:hover .alt         { transform: none; }
 
-/* ── CTA pill ─────────────────────────────────────────────────── */
-.kage-nav__cta {
-  position: relative;
-  display: inline-flex;
-  align-items: center;
-  gap: 10px;
-  padding: 10px 22px;
-  border: 1px solid var(--line);
-  border-radius: 100px;
-  overflow: hidden;
-  font-size: 10px;
-  font-weight: 600;
-  letter-spacing: .22em;
-  text-transform: uppercase;
-  color: var(--bone);
-  text-decoration: none;
-  transition: color .45s var(--ease), border-color .45s;
-  flex-shrink: 0;
-}
-
-.kage-nav__cta i {
-  position: absolute;
-  inset: 0;
-  background: var(--bone);
-  transform: translate3d(0,101%,0);
-  transition: transform .62s var(--ease-out-expo);
-  z-index: -1;
-  font-style: normal;
-}
-
-.kage-nav__cta span, .kage-nav__cta svg { position: relative; z-index: 1; }
-
-.kage-nav__cta:hover { color: #05070a; border-color: var(--bone); }
-.kage-nav__cta:hover i { transform: none; }
-
 /* ── Burger ───────────────────────────────────────────────────── */
 .kage-burger {
   display: none;
@@ -227,5 +192,4 @@
   .kage-nav__link span { height: auto; line-height: 1.2; transform: none !important; }
   .kage-nav__link .alt { position: static; margin-top: 6px; font-size: 10px; color: var(--muted); }
 
-  .kage-nav__cta { padding: 8px 16px; font-size: 9px; }
 }
