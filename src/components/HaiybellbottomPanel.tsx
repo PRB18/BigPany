@@ -127,7 +127,7 @@ export default function HaiybellbottomPanel() {
           <motion.div className="hb-rule" variants={prefersReduced ? REDUCED : ITEM} />
 
           <motion.p className="eyebrow hb-sub" variants={prefersReduced ? REDUCED : ITEM}>
-            Haiybellbottom
+            Hairybellbottom
           </motion.p>
 
           <motion.p className="body-sm hb-desc" variants={prefersReduced ? REDUCED : ITEM}>

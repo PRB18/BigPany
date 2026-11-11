@@ -37,13 +37,17 @@ export default function Hero() {
       {/* Looping video background */}
       <video
         className="hero__video"
-        src="/hero-loop.mp4"
+        poster="/hero-bg.jpg"
+        preload="metadata"
         autoPlay
         muted
         loop
         playsInline
         aria-hidden="true"
-      />
+      >
+        <source src="/hero-loop.mp4" type="video/mp4" />
+        <source src="https://www.bigpany.in/hero-loop.mp4" type="video/mp4" />
+      </video>
 
       {/* Dark cinematic overlay */}
       <div className="hero__overlay" aria-hidden="true" />

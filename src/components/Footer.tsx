@@ -37,7 +37,7 @@ export default function Footer() {
             <li>
               <a href="#haiybellbottom" className="footer__nav-link"
                 onClick={(e) => handleAnchorClick(e, '#haiybellbottom')}>
-                Haiybellbottom
+                Hairybellbottom
               </a>
             </li>
             <li>
