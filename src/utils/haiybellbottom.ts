@@ -10,7 +10,7 @@ export interface HaiybellbottomSlide {
   detail: string
 }
 
-export const HB_TARGET_URL = 'https://haiybellbottom.bigpany.in/'
+export const HB_TARGET_URL = 'https://hairybellbottom.bigpany.in/'
 
 export const HB_TAGLINE = 'For the fathoming'
 

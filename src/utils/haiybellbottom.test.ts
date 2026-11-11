@@ -11,7 +11,7 @@ import {
 } from './haiybellbottom'
 
 test('Haiybellbottom target URL, tagline, and slideshow progression speed match specification', () => {
-  assert.equal(HB_TARGET_URL, 'https://haiybellbottom.bigpany.in/')
+  assert.equal(HB_TARGET_URL, 'https://hairybellbottom.bigpany.in/')
   assert.equal(HB_TAGLINE, 'For the fathoming')
   assert.equal(HB_INTERVAL_MS, 5000)
   assert.equal(HB_IMAGES.length, 3)
