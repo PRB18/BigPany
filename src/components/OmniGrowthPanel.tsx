@@ -101,7 +101,7 @@ export default function OmniGrowthPanel() {
         </div>
 
         <a
-          href="https://omnigrowt.netlify.app/"
+          href="https://omnigrowth.bigpany.in/"
           target="_blank"
           rel="noopener noreferrer"
           className="venture-panel__cta venture-panel__cta--moss"
